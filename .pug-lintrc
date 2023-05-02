@@ -1,0 +1,6 @@
+{
+  "extends": "clock",
+  "disallowIdLiterals": null,
+  "validateAttributeQuoteMarks": "\"",
+  "validateAttributeSeparator": " "
+}

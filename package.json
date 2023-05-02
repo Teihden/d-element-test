@@ -1,0 +1,63 @@
+{
+  "name": "d-element-test",
+  "version": "1.0.0",
+  "description": "Frontend test assignment",
+  "scripts": {
+    "editorconfig": "editorconfig-cli",
+    "stylelint": "stylelint \"src/scss/**/*.scss\" --fix --color --syntax scss",
+    "lint": "npm run editorconfig && npm run stylelint",
+    "build": "gulp build",
+    "start": "gulp"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead",
+    "not IE 11"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teihden/d-element-test.git"
+  },
+  "editorconfig-cli": [
+    "*.json",
+    "*.js",
+    "src/*.html",
+    "src/js/**/*.js",
+    "src/img/**/*.svg",
+    "src/scss/**/*.scss"
+  ],
+  "author": "Teihden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Teihden/d-element-test/issues"
+  },
+  "homepage": "https://github.com/Teihden/d-element-test#readme",
+  "devDependencies": {
+    "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
+    "autoprefixer": "^10.4.14",
+    "browser-sync": "^2.29.0",
+    "del": "^7.0.0",
+    "eslint": "^8.36.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-pug": "^5.0.0",
+    "gulp-pug-linter": "^1.5.0",
+    "gulp-purgecss": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "postcss": "^8.4.21",
+    "pug-lint": "^2.6.0",
+    "pug-lint-config-clock": "^2.0.0",
+    "puglint-stylish": "^1.1.0",
+    "sass": "^1.62.1",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^31.0.0",
+    "stylelint-config-standard-scss": "^7.0.1",
+    "stylelint-order": "^6.0.3"
+  }
+}

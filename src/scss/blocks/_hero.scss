@@ -1,7 +1,15 @@
 .hero {
   position: relative;
-  padding: 100px 23px 56px 212px;
+  padding: 100px 30px 56px 30px;
   background-color: transparent;
+
+  @media (min-width: $tablet-width) {
+    padding: 100px 30px 56px 120px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 100px 23px 56px 212px;
+  }
 
   &::after {
     position: absolute;
@@ -19,11 +27,26 @@
 .hero-container {
   margin: 0 auto;
   max-width: 1131px;
-  padding: 89px 0 134px;
-  background-image: url("../img/homepage/hero-banner.svg");
-  background-size: auto;
-  background-position: right -11px;
-  background-repeat: no-repeat;
+  padding: 39px 0 34px;
+
+  @media (min-width: calc($tablet-width + 100px)) {
+    background-image: url("../img/homepage/hero-banner.svg");
+    background-size: 50% auto;
+    background-position: right 1px bottom 20px;
+    background-repeat: no-repeat;
+    padding: 39px 0 54px;
+  }
+
+  @media (min-width: calc($tablet-width + 270px)) {
+    padding: 49px 0 94px;
+    background-position: right 1px center;
+  }
+
+  @media (min-width: $desktop-width) {
+    background-size: 60.9% auto;
+    background-position: right 1px top -1px;
+    padding: 89px 0 134px;
+  }
 }
 
 .hero__heading {
@@ -44,4 +67,3 @@
   margin: 0 0 0 1px;
   box-shadow: $button-shadow;
 }
-

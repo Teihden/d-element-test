@@ -19,10 +19,13 @@ $form-shadow: 5px 10px 50px rgba(16, 112, 177, 0.2);
 $form-button-shadow: drop-shadow(5px 10px 20px rgba(16, 112, 177, 0.2));
 
 // Widths
-$min-layout-width: 360px;
+$min-container-width: 360px;
+$max-container-width: 940px;
 
 // Breakpoints
+$mobile-width-only: 400px;
 $tablet-width: 700px;
+$desktop-width: 1200px;
 // @mobile-width-only: 767px;
 // @tablet-width: 768px;
 // @desktop-width: 1200px;

@@ -2,25 +2,45 @@
   position: relative;
   background-color: $picton-blue;
   color: $white;
-  padding: 0 80px;
+  padding: 0 30px;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 80px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 80px;
+  }
 
   &::before {
     content: "";
     position: absolute;
     top: 0;
-    left: -96px;
+    left: 0;
     height: 100%;
     width: 100%;
     background: #316099;
+
+    @media (min-width: $tablet-width) {
+      left: -96px;
+    }
   }
 }
 
 .page-footer__container {
   position: relative;
   z-index: 10;
-  max-width: 940px;
-  padding: 97px 80px 64px 0;
+  max-width: $max-container-width;
+  padding: 47px 30px 34px 0;
   margin: 0 auto;
+
+  @media (min-width: $tablet-width) {
+    padding: 77px 60px 44px 0;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 97px 80px 64px 0;
+  }
 }
 
 .page-footer__navigation {
@@ -31,18 +51,30 @@
 }
 
 .page-footer__nav-block {
-  width: 200px;
   padding: 0 10px 0 0;
 
   &--company {
-    margin: 0 70px 0 0;
+    width: 250px;
+    margin: 0;
+
+    @media (min-width: $tablet-width) {
+      width: 300px;
+      margin: 0 70px 0 0;
+    }
   }
 
   &--about {
-    margin: 0 10px 0 0;
+    width: 100%;
+    margin: 0;
+
+    @media (min-width: calc($tablet-width + 150px)) {
+      width: 200px;
+      margin: 0 10px 0 0;
+    }
   }
 
   &--follow {
+    width: 200px;
     margin: 0;
   }
 }

@@ -1,7 +1,15 @@
 .card {
-  padding: 48px 47px;
+  padding: 30px;
   box-shadow: $card-shadow;
   border-radius: 10px;
+
+  @media (min-width: $tablet-width) {
+    padding: 40px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 48px 47px;
+  }
 
   &--business {
     align-self: center;
@@ -14,7 +22,11 @@
   display: block;
 
   &--business {
-    margin: 0 0 56px 26px;
+    margin: 0 auto 56px;
+
+    @media (min-width: $desktop-width) {
+      margin: 0 76px 56px 26px;
+    }
   }
 
   &--technology {
@@ -22,7 +34,11 @@
   }
 
   &--product {
-    margin: 0 0 56px 52px;
+    margin: 0 auto 56px;
+
+    @media (min-width: $desktop-width) {
+      margin: 0 76px 56px 52px;
+    }
   }
 }
 

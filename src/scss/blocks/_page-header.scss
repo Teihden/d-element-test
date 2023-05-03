@@ -7,14 +7,6 @@
 
 .page-header__logo {
   display: block;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.6;
-  }
 }
 
 .page-header__image {
@@ -22,19 +14,13 @@
 }
 
 .page-header__button {
+  position: relative;
   @include button-default;
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   background-image: url("../img/icons/menu.svg");
   background-size: 32px 32px;
   background-position: center;
   background-repeat: no-repeat;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    opacity: 0.6;
-  }
+  margin: 0 -7px 0 0;
 }

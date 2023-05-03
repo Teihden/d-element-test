@@ -4,15 +4,10 @@
   line-height: 45px;
   letter-spacing: 0.05em;
 
-  @media (min-width: $tablet-width) {
-    font-size: 36px;
-    line-height: 46px;
-  }
-
   &--main {
-    font-family: "Galien", "Times New Roman", serif;
     font-weight: 700;
     font-size: 42px;
+    font-family: Galien, "Times New Roman", serif;
     line-height: 63px;
     letter-spacing: 0.04em;
 
@@ -30,5 +25,10 @@
       font-size: 20px;
       line-height: 30px;
     }
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 36px;
+    line-height: 46px;
   }
 }

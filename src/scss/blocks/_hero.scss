@@ -3,14 +3,6 @@
   padding: 100px 30px 56px;
   background-color: transparent;
 
-  @media (min-width: $tablet-width) {
-    padding: 100px 30px 56px 120px;
-  }
-
-  @media (min-width: $desktop-width) {
-    padding: 100px 23px 56px 212px;
-  }
-
   &::after {
     content: '';
     position: absolute;
@@ -24,6 +16,14 @@
     background-image: $blue-gradient;
 
     opacity: 0.2;
+  }
+
+  @media (min-width: $tablet-width) {
+    padding: 100px 30px 56px 120px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 100px 23px 56px 212px;
   }
 }
 

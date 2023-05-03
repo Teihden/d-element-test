@@ -1,0 +1,28 @@
+// Colors
+$white: #ffffff;
+$black: #000000;
+$dark-cyan-blue: #1f3f68;
+$dark-state-blue: #316099;
+$picton-blue: #5a98d0;
+$platonic-blue: #98c3e8;
+$titanium: #e5e5e5;
+$nocturne: #356ead;
+$error: #ff0000;
+
+// Gradient
+$blue-gradient: linear-gradient(0deg, #98C3E8 8.84%, rgba(152, 195, 232, 0) 31.12%);
+
+// Shadows
+$card-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+$button-shadow: 5px 10px 20px rgba(53, 110, 173, 0.2);
+$form-shadow: 5px 10px 50px rgba(16, 112, 177, 0.2);
+$form-button-shadow: drop-shadow(5px 10px 20px rgba(16, 112, 177, 0.2));
+
+// Widths
+$min-layout-width: 360px;
+
+// Breakpoints
+$tablet-width: 700px;
+// @mobile-width-only: 767px;
+// @tablet-width: 768px;
+// @desktop-width: 1200px;

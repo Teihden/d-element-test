@@ -1,0 +1,40 @@
+.page-header__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+}
+
+.page-header__logo {
+  display: block;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.page-header__image {
+  display: block;
+}
+
+.page-header__button {
+  @include button-default;
+  width: 32px;
+  height: 32px;
+  background-image: url("../img/icons/menu.svg");
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}

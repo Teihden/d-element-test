@@ -1,0 +1,35 @@
+.button {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  text-transform: capitalize;
+  color: $white;
+  background-color: $picton-blue;
+  border: 0;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 10px;
+  letter-spacing: 0.04em;
+
+  &:hover,
+  &:focus {
+    background-color: $dark-cyan-blue;
+  }
+
+  &:focus {
+    background-color: $dark-cyan-blue;
+    outline: $dark-cyan-blue;
+  }
+
+  &:active {
+    color: rgba($white, 0.3);
+    background-color: $dark-cyan-blue;
+  }
+
+  &:disabled {
+    background-color: $titanium;
+    cursor: default;
+  }
+}

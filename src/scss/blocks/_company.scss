@@ -1,0 +1,64 @@
+.company {
+  width: 300px;
+}
+
+.company__logo-link {
+  display: flex;
+  gap: 15px;
+  margin: 0 0 31px 2px;
+}
+
+.company__logo {
+  display: block;
+}
+
+.company__name {
+  font-size: 28px;
+  line-height: 46px;
+  letter-spacing: 0.03em;
+}
+
+.company__list {
+  @include list-default;
+  display: flex;
+  flex-direction: column;
+  row-gap: 21px;
+}
+
+.company__item {
+  display: flex;
+  column-gap: 16px;
+  letter-spacing: 0.05em;
+
+  &--address {
+    &::before {
+      content: "A.";
+      display: block;
+      width: 19px;
+      height: 26px;
+    }
+  }
+
+  &--phone {
+    &::before {
+      content: "T.";
+      display: block;
+      width: 19px;
+      height: 26px;
+    }
+  }
+
+  &--email {
+    &::before {
+      content: "E";
+      display: block;
+      width: 19px;
+      height: 26px;
+    }
+  }
+}
+
+.company__link {
+  letter-spacing: 0.05em;
+}
+

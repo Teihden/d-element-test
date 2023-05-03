@@ -5,9 +5,12 @@
 *.pdf
 *.psd
 *.sublime*
-*.code-workspace
-coverage
-node_modules/
+node_modules
 npm-debug.*
+src/css/*.css
+src/css/*.map
 Thumbs.db
+*.code-workspace
 **/CNAME
+coverage
+build

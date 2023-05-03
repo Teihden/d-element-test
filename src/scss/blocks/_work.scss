@@ -1,0 +1,59 @@
+.work {
+  position: relative;
+  background-color: $picton-blue;
+  color: $white;
+  padding: 0 80px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -96px;
+    height: 100%;
+    width: 100%;
+    background: #316099;
+    border-radius: 0px 200px 0px 0px;
+  }
+}
+
+.work__container {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  grid-template-rows: repeat(2, auto);
+  max-width: 940px;
+  padding: 91px 80px 98px 0;
+  margin: 0 auto;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 80px;
+    width: 100vw;
+    height: 1px;
+    background-color: #FFFFFF;
+    opacity: 0.4;
+  }
+}
+
+.work__heading {
+  max-width: 320px;
+  margin: 0 0 32px;
+}
+
+.work-text {
+  margin: 0;
+}
+
+.work__button {
+  grid-area: 1 / 2 / 3 / -1;
+  align-self: center;
+  justify-self: right;
+  min-height: 56px;
+  min-width: 220px;
+  padding: 15px;
+  margin: 1px 0 0;
+  box-shadow: $button-shadow;
+}

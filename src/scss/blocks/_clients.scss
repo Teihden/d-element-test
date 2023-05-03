@@ -1,0 +1,53 @@
+.clients {
+  background-color: $picton-blue;
+  border-radius: 200px 0px 0px 0px;
+  padding: 96px 80px 124px;
+  color: $white;
+}
+
+.clients-container {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.clients-header {
+  display: flex;
+  max-width: 860px;
+  justify-content: space-between;
+  margin: 0 0 111px;
+}
+
+.clients__heading {
+  margin: 0 20px 0 0;
+}
+
+.clients__text.text {
+  max-width: 540px;
+  margin: 0;
+}
+
+.clients__list {
+  @include list-default;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(234px, 1fr));
+  gap: 1px;
+  background-color: color.adjust($white, $alpha: -0.6);
+}
+
+.clients__item {
+  display: grid;
+  place-items: center;
+  min-height: 128px;
+  font-size: 20px;
+  line-height: 46px;
+  letter-spacing: 0.02em;
+  background-color: $picton-blue;
+}
+
+.clients__link {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background-color: color.adjust($dark-cyan-blue, $alpha: -0.8);
+}

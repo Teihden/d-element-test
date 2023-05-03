@@ -6,7 +6,7 @@ import stylelint from '@ronilaukkarinen/gulp-stylelint';
 import pug from 'gulp-pug';
 import pugLinter from 'gulp-pug-linter';
 import imagemin from 'gulp-imagemin';
-import { deleteAsync } from 'del';
+import { deleteSync } from 'del';
 import browserSyncJob from 'browser-sync';
 import purgecss from 'gulp-purgecss';
 import autoprefixer from 'autoprefixer';
@@ -28,8 +28,8 @@ function imageMin(cb) {
   cb();
 }
 
-function clean() {
-  return deleteAsync(['build/']);
+async function clean() {
+  return deleteSync(['build/']);
 }
 
 function copyMisc() {
@@ -67,17 +67,17 @@ function browsersync() {
   });
 }
 
-function lintSass() {
-  return gulp.src('src/scss/**/*.scss')
-    .pipe(stylelint({
-      configFile: './.stylelintrc.js',
-      failAfterError: true,
-      reporters: [
-        { formatter: 'string', console: true },
-      ],
-      fix: true,
-    }));
-}
+// function lintSass() {
+//   return gulp.src('src/scss/**/*.scss')
+//     .pipe(stylelint({
+//       configFile: './.stylelintrc.js',
+//       failAfterError: true,
+//       reporters: [
+//         { formatter: 'string', console: true },
+//       ],
+//       fix: true,
+//     }));
+// }
 
 function compileSass() {
   return gulp.src('src/scss/**/*.scss')
@@ -123,7 +123,8 @@ function compilePug() {
 }
 
 function watcher() {
-  gulp.watch('src/scss/**/*.scss', gulp.series(lintSass, compileSass));
+  gulp.watch('src/scss/**/*.scss', gulp.series(compileSass));
+  // gulp.watch('src/scss/**/*.scss', gulp.series(lintSass, compileSass));
   gulp.watch('src/pug/**/*.pug', gulp.series(lintPug, compilePug));
   gulp.watch(['src/img/**/*', 'src/apple-touch-icon.png'], imageMin);
   gulp.watch(['src/favicon.ico', 'src/manifest.webmanifest'], copyMisc);
@@ -144,19 +145,31 @@ gulp.task(
   gulp.series(
     clean,
     gulp.series(lintPug, compilePug),
-    gulp.series(lintSass, compileSass, purgeCSS, postCSS),
+    gulp.series(compileSass, purgeCSS, postCSS),
     gulp.series(lintJS, copyJS),
     'copy',
     imageMin,
   ),
 );
 
+// gulp.task(
+//   'build',
+//   gulp.series(
+//     clean,
+//     gulp.series(lintPug, compilePug),
+//     gulp.series(lintSass, compileSass, purgeCSS, postCSS),
+//     gulp.series(lintJS, copyJS),
+//     'copy',
+//     imageMin,
+//   ),
+// );
+
 gulp.task(
   'default',
   gulp.parallel(
     clean,
     gulp.series(lintPug, compilePug),
-    gulp.series(lintSass, compileSass),
+    gulp.series(compileSass),
     gulp.series(lintJS, copyJS),
     'copy',
     imageMin,
@@ -164,3 +177,17 @@ gulp.task(
     watcher,
   ),
 );
+
+// gulp.task(
+//   'default',
+//   gulp.parallel(
+//     clean,
+//     gulp.series(lintPug, compilePug),
+//     gulp.series(lintSass, compileSass),
+//     gulp.series(lintJS, copyJS),
+//     'copy',
+//     imageMin,
+//     browsersync,
+//     watcher,
+//   ),
+// );

@@ -1,6 +1,6 @@
-# Project "Device"
-[![CI](https://github.com/Teihden/device/actions/workflows/CI.yml/badge.svg)](https://github.com/Teihden/device/actions/workflows/CI.yml)
-[![Github Pages](https://github.com/Teihden/device/actions/workflows/github-pages.yml/badge.svg)](https://github.com/Teihden/device/actions/workflows/github-pages.yml)
+# Digital Element. Frontend test assignment. 
+[![CI](https://github.com/Teihden/d-element-test/actions/workflows/CI.yml/badge.svg)](https://github.com/Teihden/d-element-test/actions/workflows/CI.yml)
+[![Github Pages](https://github.com/Teihden/d-element-test/actions/workflows/github-pages.yml/badge.svg)](https://github.com/Teihden/d-element-test/actions/workflows/github-pages.yml)
 
 ## Setup
 

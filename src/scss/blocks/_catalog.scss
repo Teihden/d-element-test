@@ -1,0 +1,23 @@
+.catalog {
+  position: relative;
+  margin: 192px auto 211px;
+  padding: 0 0 0 81px;
+  max-width: 941px;
+}
+
+.catalog__heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $dark-state-blue;
+  margin: 0;
+  max-width: 360px;
+}
+
+.catalog__list {
+  @include list-default;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 100px;
+}

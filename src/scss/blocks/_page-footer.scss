@@ -1,0 +1,68 @@
+.page-footer {
+  position: relative;
+  background-color: $picton-blue;
+  color: $white;
+  padding: 0 80px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -96px;
+    height: 100%;
+    width: 100%;
+    background: #316099;
+  }
+}
+
+.page-footer__container {
+  position: relative;
+  z-index: 10;
+  max-width: 940px;
+  padding: 97px 80px 64px 0;
+  margin: 0 auto;
+}
+
+.page-footer__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 50px;
+}
+
+.page-footer__nav-block {
+  width: 200px;
+  padding: 0 10px 0 0;
+
+  &--company {
+    margin: 0 70px 0 0;
+  }
+
+  &--about {
+    margin: 0 10px 0 0;
+  }
+
+  &--follow {
+    margin: 0;
+  }
+}
+
+.page-footer__list {
+  @include list-default;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.page-footer__link {
+  letter-spacing: 0.05em;
+}
+
+.page-footer__subheading {
+  margin: 0 0 32px;
+}
+
+.page-footer__copyright {
+  opacity: 0.4;
+  margin-top: 64px;
+}

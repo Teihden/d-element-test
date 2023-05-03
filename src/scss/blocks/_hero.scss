@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: 100px 30px 56px 30px;
+  padding: 100px 30px 56px;
   background-color: transparent;
 
   @media (min-width: $tablet-width) {
@@ -12,29 +12,33 @@
   }
 
   &::after {
+    content: '';
     position: absolute;
-    z-index: -10;
     top: 0;
     left: 0;
-    content: '';
+    z-index: -10;
+
     width: 100%;
     height: 100%;
+
     background-image: $blue-gradient;
+
     opacity: 0.2;
   }
 }
 
 .hero-container {
-  margin: 0 auto;
   max-width: 1131px;
+  margin: 0 auto;
   padding: 39px 0 34px;
 
   @media (min-width: calc($tablet-width + 100px)) {
-    background-image: url("../img/homepage/hero-banner.svg");
-    background-size: 50% auto;
-    background-position: right 1px bottom 20px;
-    background-repeat: no-repeat;
     padding: 39px 0 54px;
+
+    background-image: url("../img/homepage/hero-banner.svg");
+    background-position: right 1px bottom 20px;
+    background-size: 50% auto;
+    background-repeat: no-repeat;
   }
 
   @media (min-width: calc($tablet-width + 270px)) {
@@ -43,27 +47,28 @@
   }
 
   @media (min-width: $desktop-width) {
-    background-size: 60.9% auto;
-    background-position: right 1px top -1px;
     padding: 89px 0 134px;
+    background-position: right 1px top -1px;
+    background-size: 60.9% auto;
   }
 }
 
 .hero__heading {
-  color: $dark-cyan-blue;
-  margin: 0 0 32px;
   max-width: 520px;
+  margin: 0 0 32px;
+  color: $dark-cyan-blue;
 }
 
 .hero-text {
-  margin: 0 0 75px 1px;
   max-width: 425px;
+  margin: 0 0 75px 1px;
 }
 
 .hero__button {
-  min-height: 56px;
   min-width: 220px;
-  padding: 15px;
+  min-height: 56px;
   margin: 0 0 0 1px;
+  padding: 15px;
+
   box-shadow: $button-shadow;
 }

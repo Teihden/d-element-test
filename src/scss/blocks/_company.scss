@@ -1,7 +1,7 @@
 .company__logo-link {
   display: flex;
   gap: 15px;
-  margin: 0 0 31px 0;
+  margin: 0 0 31px;
 }
 
 .company__logo {
@@ -16,6 +16,7 @@
 
 .company__list {
   @include list-default;
+
   display: flex;
   flex-direction: column;
   row-gap: 21px;
@@ -23,13 +24,14 @@
 
 .company__item {
   display: flex;
-  column-gap: 16px;
   letter-spacing: 0.05em;
+  column-gap: 16px;
 
   &--address {
     &::before {
       content: "A.";
       display: block;
+
       width: 19px;
       height: 26px;
     }
@@ -39,6 +41,7 @@
     &::before {
       content: "T.";
       display: block;
+
       width: 19px;
       height: 26px;
     }
@@ -48,6 +51,7 @@
     &::before {
       content: "E";
       display: block;
+
       width: 19px;
       height: 26px;
     }

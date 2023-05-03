@@ -1,8 +1,53 @@
 .work {
   position: relative;
+
+  padding: 0 30px;
+
   background-color: $picton-blue;
   color: $white;
-  padding: 0 30px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #316099;
+
+    @media (min-width: $tablet-width) {
+      position: absolute;
+      top: 0;
+      left: -96px;
+
+      width: 100%;
+      height: 100%;
+      border-radius: 0 200px 0 0;
+
+      background: #316099;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: #FFF;
+
+    opacity: 0.4;
+
+    @media (min-width: $tablet-width) {
+      display: none;
+    }
+  }
 
  @media (min-width: $tablet-width) {
     padding: 0 80px;
@@ -10,42 +55,6 @@
 
   @media (min-width: $desktop-width) {
     padding: 0 80px;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: #316099;
-
-    @media (min-width: $tablet-width) {
-      position: absolute;
-      top: 0;
-      left: -96px;
-      height: 100%;
-      width: 100%;
-      background: #316099;
-      border-radius: 0px 200px 0px 0px;
-    }
-  }
-
-  &::after {
-    display: block;
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #FFFFFF;
-    opacity: 0.4;
-
-    @media (min-width: $tablet-width) {
-      display: none;
-    }
   }
 }
 
@@ -55,9 +64,29 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
   max-width: $max-container-width;
-  padding: 41px 30px 48px 0;
   margin: 0 auto;
+  padding: 41px 30px 48px 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 80px;
+    bottom: 0;
+    display: none;
+
+    width: 100vw;
+    height: 1px;
+
+    background-color: #FFF;
+
+    opacity: 0.4;
+
+    @media (min-width: $tablet-width) {
+      display: block;
+    }
+  }
 
   @media (min-width: $tablet-width) {
     padding: 71px 60px 78px 0;
@@ -66,27 +95,11 @@
   @media (min-width: $desktop-width) {
     padding: 91px 80px 98px 0;
   }
-
-  &::after {
-    display: none;
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 80px;
-    width: 100vw;
-    height: 1px;
-    background-color: #FFFFFF;
-    opacity: 0.4;
-
-    @media (min-width: $tablet-width) {
-      display: block;
-    }
-  }
 }
 
 .work__content {
-  margin: 0;
   max-width: 460px;
+  margin: 0;
 
   @media (min-width: $mobile-width-only) {
     margin: 0 30px 0 0;
@@ -104,11 +117,13 @@
 
 .work__button {
   align-self: start;
-  min-height: 56px;
+
   min-width: 220px;
-  padding: 15px;
-  box-shadow: $button-shadow;
+  min-height: 56px;
   margin: 40px 1px 0 0;
+  padding: 15px;
+
+  box-shadow: $button-shadow;
 
   @media (min-width: calc($tablet-width + 191px)) {
     margin: 74px 1px 0 0;

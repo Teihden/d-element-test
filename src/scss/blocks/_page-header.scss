@@ -1,7 +1,8 @@
 .page-header__navigation {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+
   background-color: transparent;
 }
 
@@ -14,13 +15,16 @@
 }
 
 .page-header__button {
-  position: relative;
   @include button-default;
+
+  position: relative;
+
   width: 48px;
   height: 48px;
-  background-image: url("../img/icons/menu.svg");
-  background-size: 32px 32px;
-  background-position: center;
-  background-repeat: no-repeat;
   margin: 0 -7px 0 0;
+
+  background-image: url("../img/icons/stack.svg#menu");
+  background-position: center;
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
 }

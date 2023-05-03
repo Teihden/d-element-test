@@ -6,13 +6,17 @@
 
 @mixin button-default {
   display: block;
+
   padding: 0;
   border: 0;
-  font-family: inherit;
-  font-style: inherit;
-  font-weight: inherit;
+
   background-color: transparent;
   color: inherit;
-  user-select: none;
+
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+
   cursor: pointer;
+  user-select: none;
 }

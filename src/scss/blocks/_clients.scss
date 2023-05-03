@@ -1,11 +1,11 @@
 .clients {
-  background-color: $picton-blue;
   padding: 46px 30px 64px;
+  background-color: $picton-blue;
   color: $white;
 
   @media (min-width: $tablet-width) {
     padding: 76px 80px 94px;
-    border-radius: 200px 0px 0px 0px;
+    border-radius: 200px 0 0;
   }
 
   @media (min-width: $desktop-width) {
@@ -22,8 +22,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  max-width: 860px;
   justify-content: space-between;
+
+  max-width: 860px;
   margin: 0 0 70px;
 
   @media (min-width: $tablet-width) {
@@ -36,20 +37,47 @@
 }
 
 .clients__heading {
-  margin: 0;
   max-width: 230px;
+  margin: 0;
 }
 
-.clients__text.text {
+.clients__text {
   max-width: 540px;
   margin: 0;
 }
 
 .clients__list {
-  position: relative;
   @include list-default;
+
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: $picton-blue;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+
+    width: 1px;
+    height: 100%;
+
+    background-color: $picton-blue;
+  }
 
   @media (min-width: $tablet-width) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -58,40 +86,21 @@
   @media (min-width: $desktop-width) {
     grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
   }
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: 10;
-    width: 100%;
-    height: 1px;
-    left: 0;
-    bottom: 0;
-    background-color: $picton-blue;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: 10;
-    width: 1px;
-    height: 100%;
-    right: 0;
-    bottom: 0;
-    background-color: $picton-blue;
-  }
 }
 
 .clients__item {
   display: grid;
   place-items: center;
+
   min-height: 128px;
+  border-right: 1px solid color.adjust($white, $alpha: -0.6);
+  border-bottom: 1px solid color.adjust($white, $alpha: -0.6);
+
+  background-color: $picton-blue;
+
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.02em;
-  background-color: $picton-blue;
-  border-right: 1px solid color.adjust($white, $alpha: -0.6);
-  border-bottom: 1px solid color.adjust($white, $alpha: -0.6);
 
   @media (min-width: $desktop-width) {
     font-size: 20px;
@@ -100,9 +109,11 @@
 }
 
 .clients__link {
-  height: 100%;
-  width: 100%;
   display: grid;
   place-items: center;
+
+  width: 100%;
+  height: 100%;
+
   background-color: color.adjust($dark-cyan-blue, $alpha: -0.8);
 }

@@ -1,7 +1,13 @@
 .card {
   padding: 30px;
-  box-shadow: $card-shadow;
   border-radius: 10px;
+  box-shadow: $card-shadow;
+
+  &--business {
+    grid-area: 1 / 1 / 3 / 2;
+    align-self: center;
+    margin: 0 0 33px;
+  }
 
   @media (min-width: $tablet-width) {
     padding: 40px;
@@ -9,12 +15,6 @@
 
   @media (min-width: $desktop-width) {
     padding: 48px 47px;
-  }
-
-  &--business {
-    align-self: center;
-    grid-area: 1 / 1 / 3 / 2;
-    margin: 0 0 33px;
   }
 }
 
@@ -52,14 +52,17 @@
 
 .card__link {
   display: inline-block;
-  padding: 0 48px 0 0;
+
   min-width: 127px;
+  padding: 0 48px 0 0;
+
+  background-image: url("../img/icons/stack.svg#arrow");
+  background-position: right center;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  color: $picton-blue;
+
   font-size: 14px;
   line-height: 30px;
   letter-spacing: 0.05em;
-  color: $picton-blue;
-  background-image: url("../img/icons/arrow.svg");
-  background-size: 24px 24px;
-  background-position: right center;
-  background-repeat: no-repeat;
 }

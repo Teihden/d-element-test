@@ -1,7 +1,8 @@
 module.exports = {
   extends: [
     "stylelint-config-standard",
-    "stylelint-config-standard-scss"
+    "stylelint-config-standard-scss",
+    "@ifanrx/stylelint-config-standard-bem"
   ],
   plugins: [
     "stylelint-order"

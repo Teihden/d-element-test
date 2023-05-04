@@ -14,7 +14,6 @@ import browserSync from 'browser-sync';
 import postcss from 'gulp-postcss';
 import csso from 'postcss-csso';
 import autoprefixer from 'autoprefixer';
-import purgecss from 'gulp-purgecss';
 import eslint from 'gulp-eslint-new';
 import terser from 'gulp-terser';
 import rename from 'gulp-rename';
@@ -47,15 +46,6 @@ function compileScss() {
     }))
     .pipe(gulp.dest('build/css/', { sourcemaps: '.' }))
     .pipe(browser.stream());
-}
-
-function purgeCSS() {
-  return gulp.src('build/css/*.css')
-    .pipe(purgecss({
-      content: ['build/*.html'],
-      variables: true,
-    }))
-    .pipe(gulp.dest('build/css'));
 }
 
 function postCSS() {
@@ -190,12 +180,19 @@ function watcher(cb) {
   cb();
 }
 
+// ---------------------------------------------------------------------
+// | Tasks                                                             |
+// ---------------------------------------------------------------------
+
+// Server
+export const server = gulp.series(browsersync);
+
 // Build
 export const build = gulp.series(
   clean,
   gulp.parallel(
     gulp.series(lintPug, compilePug, optimizeHTML),
-    gulp.series(lintSass, compileScss, purgeCSS, postCSS),
+    gulp.series(lintSass, compileScss, postCSS),
     gulp.series(lintJS, optimizeJS),
     copyFonts,
     copyMisc,

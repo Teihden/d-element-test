@@ -14,6 +14,7 @@ import browserSync from 'browser-sync';
 import postcss from 'gulp-postcss';
 import csso from 'postcss-csso';
 import autoprefixer from 'autoprefixer';
+// eslint-disable-next-line import/no-unresolved
 import eslint from 'gulp-eslint-new';
 import terser from 'gulp-terser';
 import rename from 'gulp-rename';

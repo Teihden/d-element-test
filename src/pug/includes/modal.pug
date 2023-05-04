@@ -2,18 +2,18 @@ section.modal
   .modal__inner
     h2.modal__heading.heading.heading--subheading Send us message
     button.modal__button-close(type="button" aria-label="Close the form window.")
-    form.modal__form(action="https://echo.htmlacademy.ru/" method="post")
+    form.modal__form(action="https://echo.htmlacademy.ru/" method="post" novalidate)
       ul.modal__list
         li.modal__item
           label.modal__label(for="modal-name") Full Name
-          input.modal__input.modal__input--name#modal-name(type="text" name="modal-name" placeholder="Your Name")
-          p.modal__alert
+          input.modal__input.modal__input--name.modal__field(type="text" name="modal-name" placeholder="Your Name" data-class="name")
+          p.modal__alert.modal__alert--name
         li.modal__item
           label.modal__label(for="modal-email") Email
-          input.modal__input.modal__input--email#modal-email(type="email" name="modal-email" placeholder="Your Email")
-          p.modal__alert
+          input.modal__input.modal__input--email.modal__field(type="email" name="modal-email" placeholder="Your Email" data-class="email" minlength="6")
+          p.modal__alert.modal__alert--email
         li.modal__item
           label.modal__label(for="modal-message") Message
-          textarea.modal__textarea#modal-message(name="modal-message" placeholder="Your Message")
-          p.modal__alert
+          textarea.modal__textarea.modal__field(name="modal-message" placeholder="Your Message" data-class="message")
+          p.modal__alert.modal__alert--message
       button.modal__button-submit.button(type="submit") Submit

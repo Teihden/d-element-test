@@ -39,12 +39,16 @@
   min-width: $min-container-width;
   max-width: 540px;
   max-height: 90vh;
-  padding: 56px;
+  padding: 30px;
 
   background-color: $white;
   color: $dark-cyan-blue;
   box-shadow: $form-shadow;
   cursor: default;
+
+  @media (min-width: $tablet-width) {
+    padding: 56px;
+  }
 }
 
 .modal__heading {
@@ -145,6 +149,11 @@
   font-family: inherit;
   line-height: 30px;
   letter-spacing: 0.04em;
+  padding: 10px 15px;
+
+  @media (min-width: $tablet-width) {
+    padding: 20px 25px;
+  }
 
   appearance: textfield;
 
@@ -154,8 +163,9 @@
     font-family: inherit;
     line-height: 30px;
     letter-spacing: 0.04em;
+    color: $dark-cyan-blue;
 
-    opacity: 0.2;
+    opacity: 0.6;
   }
 
   &:focus {
@@ -176,33 +186,13 @@
       opacity: 0.3;
     }
   }
-
-  &:not(:placeholder-shown):invalid {
-    outline: 2px solid $error;
-  }
-
-  &--name {
-    padding: 8px 20px;
-
-    @media (min-width: $tablet-width) {
-      padding: 20px 41px;
-    }
-  }
-
-  &--email {
-    padding: 8px 15px;
-
-    @media (min-width: $tablet-width) {
-      padding: 20px 35px;
-    }
-  }
 }
 
 .modal__textarea {
   display: block;
 
   height: 144px;
-  padding: 20px 35px;
+  padding: 10px 15px;
   border: 1px solid color.adjust($nocturne, $alpha: -0.6);
   border-radius: 10px;
 
@@ -216,14 +206,19 @@
 
   resize: none;
 
+  @media (min-width: $tablet-width) {
+    padding: 20px 25px;
+  }
+
   &::placeholder {
     font-weight: 300;
     font-size: 16px;
     font-family: inherit;
     line-height: 30px;
     letter-spacing: 0.04em;
+    color: $dark-cyan-blue;
 
-    opacity: 0.2;
+    opacity: 0.6;
   }
 
   &:focus {
@@ -238,4 +233,8 @@
   text-transform: uppercase;
 
   filter: $form-button-shadow;
+}
+
+.modal__field--invalid {
+  outline: 1px solid $error;
 }

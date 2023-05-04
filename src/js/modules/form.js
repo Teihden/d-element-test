@@ -1,9 +1,11 @@
+import {
+  closeModal,
+} from './modal.js';
+
 const modal = document.querySelector('.modal');
-const modalFields = modal.querySelectorAll(':scope .modal__field');
-const modalInputEmail = modal.querySelector(':scope .modal__input--email');
 
 const showErrorPresence = (element) => {
-  const className = element.dataset.class;
+  const className = element.name;
   const modalAlert = modal.querySelector(`:scope .modal__alert--${className}`);
 
   element.classList.add('modal__field--invalid');
@@ -11,7 +13,7 @@ const showErrorPresence = (element) => {
 };
 
 const removeError = (element) => {
-  const className = element.dataset.class;
+  const className = element.name;
   const modalAlert = modal.querySelector(`:scope .modal__alert--${className}`);
 
   element.classList.remove('modal__field--invalid');
@@ -32,16 +34,16 @@ const checkFieldValuePresence = (element) => {
 };
 
 const checkEmailValue = (element) => {
-  const className = element.dataset.class;
+  const className = element.name;
   const modalAlert = modal.querySelector(`:scope .modal__alert--${className}`);
-  let check = false;
+  let check = true;
 
   if (element.validity.typeMismatch) {
-    check = true;
+    check = false;
     element.classList.add('modal__field--invalid');
     modalAlert.textContent = 'Entered value needs to be an email address.';
   } else if (element.validity.tooShort) {
-    check = true;
+    check = false;
     element.classList.add('modal__field--invalid');
     modalAlert.textContent = `Email should be at least ${element.minLength} characters. You entered ${element.value.length}.`;
   }
@@ -55,12 +57,48 @@ const checkEmail = (element) => {
   }
 };
 
+const sendFormData = () => {
+  const form = modal.querySelector(':scope .modal__form');
+  const formData = new FormData(form);
+  const url = form.action;
+  const workPopupText = document.querySelector('.work__popup-text');
+
+  fetch(url, {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        closeModal();
+        workPopupText.style.opacity = '1';
+        workPopupText.textContent = 'Your message successfully sent !';
+      } else {
+        closeModal();
+        workPopupText.style.opacity = '1';
+        workPopupText.textContent = 'Your message has not been sent !';
+      }
+    });
+
+  setTimeout(() => {
+    workPopupText.style.opacity = '0';
+  }, 4000);
+
+  setTimeout(() => {
+    workPopupText.textContent = '';
+  }, 5000);
+};
+
 const checkForm = (e) => {
+  e.preventDefault();
+
+  const modalFields = modal.querySelectorAll(':scope .modal__field');
+  const modalInputEmail = modal.querySelector(':scope .modal__input--email');
+
   const isAbsentValueField = [...modalFields].map((element) => checkFieldValuePresence(element));
   const isValidEmail = checkEmailValue(modalInputEmail);
 
-  if (isAbsentValueField.includes(false) || isValidEmail) {
-    e.preventDefault();
+  if (!isAbsentValueField.includes(false) || isValidEmail) {
+    sendFormData();
   }
 };
 

@@ -91,6 +91,7 @@
 .clients__item {
   display: grid;
   place-items: center;
+  padding: 30px;
 
   min-height: 128px;
   border-right: 1px solid color.adjust($white, $alpha: -0.6);
@@ -101,6 +102,10 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.02em;
+
+  &:last-child {
+    background-color: color.adjust($dark-cyan-blue, $alpha: -0.8);
+  }
 
   @media (min-width: $desktop-width) {
     font-size: 20px;
@@ -114,6 +119,4 @@
 
   width: 100%;
   height: 100%;
-
-  background-color: color.adjust($dark-cyan-blue, $alpha: -0.8);
 }

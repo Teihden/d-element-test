@@ -1,9 +1,4 @@
-import {
-  removeError,
-} from './form.js';
-
 const modal = document.querySelector('.modal');
-const modalFields = modal.querySelectorAll(':scope .modal__field');
 
 const setScroll = () => {
   document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
@@ -23,14 +18,23 @@ const openModal = () => {
 const closeModal = () => {
   const { body } = document;
   const scrollY = body.style.top;
+  const form = modal.querySelector(':scope .modal__form');
+  const modalFields = modal.querySelectorAll(':scope .modal__field');
+  const modalAlerts = modal.querySelectorAll(':scope .modal__alert');
 
   modal.classList.remove('modal--opened');
   body.style.position = '';
   body.style.top = '';
   window.scrollTo(0, parseInt(scrollY || '0', 10) * -1, { behavior: 'instant' });
+  form.reset();
 
   modalFields.forEach((element) => {
-    removeError(element);
+    element.classList.remove('modal__field--invalid');
+  });
+
+  modalAlerts.forEach((element) => {
+    // eslint-disable-next-line no-param-reassign
+    element.textContent = '';
   });
 };
 

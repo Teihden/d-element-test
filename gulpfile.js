@@ -74,14 +74,14 @@ function compilePug() {
       pretty: false, // true | false
       doctype: 'html',
     }))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('build/'))
+    .pipe(browser.stream());
 }
 
 function optimizeHTML() {
   return gulp.src('build/*.html')
     .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest('build'))
-    .pipe(browser.stream());
+    .pipe(gulp.dest('build'));
 }
 
 // Javascript

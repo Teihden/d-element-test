@@ -29,7 +29,6 @@ const modalInputName = modal.querySelector(':scope .modal__input--name');
 const modalTextarea = modal.querySelector(':scope .modal__textarea');
 
 form.addEventListener('submit', (e) => checkForm(e));
-
 modalInputName.addEventListener('input', (e) => checkFieldValuePresence(e.target));
 modalTextarea.addEventListener('input', (e) => checkFieldValuePresence(e.target));
 modalInputEmail.addEventListener('input', (e) => checkEmail(e.target));

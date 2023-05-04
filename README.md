@@ -20,8 +20,11 @@ make lint
 
 ```shell
 # To package a site for production run
-npx gulp build
+npm run build
 
 # To get started developing a site with a development server (default task)
-npx gulp
+npm start
+
+# To start server
+npm run server
 ```

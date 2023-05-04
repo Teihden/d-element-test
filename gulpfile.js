@@ -12,10 +12,10 @@ import { stacksvg } from 'gulp-stacksvg';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import postcss from 'gulp-postcss';
-import csso from 'postcss-csso'
+import csso from 'postcss-csso';
 import autoprefixer from 'autoprefixer';
 import purgecss from 'gulp-purgecss';
-import eslint from 'gulp-eslint';
+import eslint from 'gulp-eslint-new';
 import terser from 'gulp-terser';
 import rename from 'gulp-rename';
 import sourcemaps from 'gulp-sourcemaps';
@@ -83,38 +83,30 @@ function compilePug() {
       pretty: false, // true | false
       doctype: 'html',
     }))
-    .pipe(gulp.dest('build/'))
-    .pipe(browser.stream());
+    .pipe(gulp.dest('build/'));
 }
 
 function optimizeHTML() {
   return gulp.src('build/*.html')
     .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('build'))
+    .pipe(browser.stream());
 }
 
 // Javascript
 function lintJS() {
-  return gulp.src('src/js/')
-    .pipe(eslint())
+  return gulp.src('src/js/**/*.js')
+    .pipe(eslint({
+      fix: true,
+    }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 }
 
-function copyJS() {
-  return gulp.src('src/js/**/*')
-    .pipe(gulp.dest('build/js/'))
-    .pipe(browser.stream());
-}
-
 function optimizeJS() {
-  return gulp.src('build/js/*.js')
+  return gulp.src('src/js/**/*.js')
     .pipe(sourcemaps.init())
     .pipe(terser())
-    .pipe(rename((path) => {
-      // eslint-disable-next-line no-param-reassign
-      path.extname = '.min.js';
-    }))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('build/js'));
 }
@@ -187,13 +179,15 @@ function browsersync() {
   });
 }
 
-function watcher() {
+function watcher(cb) {
   gulp.watch('src/pug/**/*.pug', gulp.series(lintPug, compilePug));
   gulp.watch('src/scss/**/*.scss', gulp.series(lintSass, compileScss));
-  gulp.watch(['src/img/**/*', 'src/apple-touch-icon.png'], copyImages);
+  gulp.watch(['src/img/**/*.{png,jpg,svg}', 'src/apple-touch-icon.png'], copyImages);
   gulp.watch(['src/favicon.ico', 'src/manifest.webmanifest'], copyMisc);
-  gulp.watch('src/fonts/**/*', copyFonts);
-  gulp.watch('src/js/**/*', gulp.series(lintJS, copyJS, optimizeJS));
+  gulp.watch('src/fonts/**/*.{woff,woff2}', copyFonts);
+  gulp.watch('src/js/**/*.js', gulp.series(lintJS, optimizeJS));
+
+  cb();
 }
 
 // Build
@@ -202,7 +196,7 @@ export const build = gulp.series(
   gulp.parallel(
     gulp.series(lintPug, compilePug, optimizeHTML),
     gulp.series(lintSass, compileScss, purgeCSS, postCSS),
-    gulp.series(lintJS, copyJS, optimizeJS),
+    gulp.series(lintJS, optimizeJS),
     copyFonts,
     copyMisc,
     imageMin,
@@ -217,14 +211,14 @@ export default gulp.series(
   gulp.parallel(
     gulp.series(lintPug, compilePug),
     gulp.series(lintSass, compileScss),
-    gulp.series(lintJS, copyJS, optimizeJS),
+    gulp.series(lintJS, optimizeJS),
     copyFonts,
     copyMisc,
     copyImages,
     stackSVG,
   ),
   gulp.series(
-    browsersync,
     watcher,
+    browsersync,
   ),
 );

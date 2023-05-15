@@ -97,7 +97,7 @@ const checkForm = (e) => {
   const isAbsentValueField = [...modalFields].map((element) => checkFieldValuePresence(element));
   const isValidEmail = checkEmailValue(modalInputEmail);
 
-  if (!isAbsentValueField.includes(false) || isValidEmail) {
+  if (!isAbsentValueField.includes(false) && isValidEmail) {
     sendFormData();
   }
 };

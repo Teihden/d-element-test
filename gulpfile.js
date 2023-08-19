@@ -51,8 +51,7 @@ function postCSS() {
       autoprefixer(),
       csso(),
     ]))
-    .pipe(gulp.dest('build/css'))
-    .pipe(browser.stream());
+    .pipe(gulp.dest('build/css'));
 }
 
 // HTML
@@ -105,8 +104,7 @@ function optimizeImages() {
     base: 'src',
   })
     .pipe(imageMin())
-    .pipe(gulp.dest('build'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('build'));
 }
 
 // SVG

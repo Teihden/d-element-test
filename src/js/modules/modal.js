@@ -1,55 +1,64 @@
-const modal = document.querySelector('.modal');
+import { handleEscapeKey, handleEnterKey } from './utils.js';
 
-const setScroll = () => {
-  document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
-};
+class Modal {
+  static onModalInnerClick = (evt) => evt.stopPropagation();
 
-const getScroll = () => document.documentElement.style.getPropertyValue('--scroll-y');
-
-const openModal = () => {
-  const scrollY = getScroll();
-  const { body } = document;
-
-  modal.classList.add('modal--opened');
-  body.style.position = 'fixed';
-  body.style.top = `-${scrollY}`;
-};
-
-const closeModal = () => {
-  const { body } = document;
-  const scrollY = body.style.top;
-  const form = modal.querySelector(':scope .modal__form');
-  const modalFields = modal.querySelectorAll(':scope .modal__field');
-  const modalAlerts = modal.querySelectorAll(':scope .modal__alert');
-
-  modal.classList.remove('modal--opened');
-  body.style.position = '';
-  body.style.top = '';
-  window.scrollTo(0, parseInt(scrollY || '0', 10) * -1, { behavior: 'instant' });
-  form.reset();
-
-  modalFields.forEach((element) => {
-    element.classList.remove('modal__field--invalid');
-  });
-
-  modalAlerts.forEach((element) => {
-    // eslint-disable-next-line no-param-reassign
-    element.textContent = '';
-  });
-};
-
-const closeModalByOverlay = (e) => {
-  const modalInner = document.querySelector('.modal__inner');
-
-  if (!modalInner.contains(e.target)) {
-    closeModal();
+  static onOpenModalButtonKeydown(evt) {
+    handleEnterKey(this.openModal, evt);
   }
-};
 
-export {
-  openModal,
-  closeModal,
-  closeModalByOverlay,
-  setScroll,
-  getScroll,
-};
+  static onCloseModalButtonKeydown(evt) {
+    handleEnterKey(this.closeModal, evt);
+  }
+
+  constructor(modalName, openModalCb = null) {
+    this.elements = {
+      modal: document.querySelector(`[data-modal=${modalName}]`),
+      modalInner: document.querySelector(`[data-modal-inner=${modalName}]`),
+      openModalButton: document.querySelector(`[data-open-button=${modalName}]`),
+      closeModalButton: document.querySelector(`[data-close-button=${modalName}]`),
+    };
+
+    this.openModalCb = openModalCb;
+
+    const {
+      modal,
+      modalInner,
+      openModalButton,
+      closeModalButton,
+    } = this.elements;
+
+    modal.addEventListener('click', this.closeModal);
+    modalInner.addEventListener('click', Modal.onModalInnerClick);
+
+    openModalButton.addEventListener('click', this.openModal);
+    openModalButton.addEventListener('keydown', Modal.onOpenModalButtonKeydown.bind(this));
+
+    closeModalButton.addEventListener('click', this.closeModal);
+    closeModalButton.addEventListener('keydown', Modal.onCloseModalButtonKeydown.bind(this));
+  }
+
+  #onDocumentKeydown = (evt) => handleEscapeKey(this.closeModal, evt);
+
+  openModal = () => {
+    const { modal } = this.elements;
+
+    modal.classList.add('modal--active');
+    document.body.style.setProperty('overflow', 'hidden');
+    document.addEventListener('keydown', this.#onDocumentKeydown);
+
+    if (this.openModalCb) {
+      this.openModalCb();
+    }
+  };
+
+  closeModal = () => {
+    const { modal } = this.elements;
+
+    modal.classList.remove('modal--active');
+    document.body.style.removeProperty('overflow');
+    document.removeEventListener('keydown', this.#onDocumentKeydown);
+  };
+}
+
+export { Modal };

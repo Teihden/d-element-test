@@ -9,4 +9,5 @@ parserOptions:
 rules: {
   import/extensions: [error, ignorePackages],
   no-param-reassign: off,
+  import/prefer-default-export: off,
 }

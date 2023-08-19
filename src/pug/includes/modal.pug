@@ -1,10 +1,10 @@
-section.modal
-  .modal__inner
+section.modal(data-modal="form-modal")
+  .modal__inner(data-modal-inner="form-modal")
     h2.modal__heading.heading.heading--subheading Send us message
-    button.modal__button-close(type="reset" aria-label="Close the form window.")
+    button.modal__button-close(type="reset" aria-label="Close the form window." data-close-button="form-modal")
       svg.modal__cross(aria-label="Company logo.")
         use(href="#cross")
-    form.modal__form(action="https://echo.htmlacademy.ru/" method="POST" novalidate autocomplete="off")
+    form.modal__form(action="https://webhook.site/c26d9ccf-9437-410a-91c2-a3738e4c9398" method="POST" novalidate autocomplete="off" data-form="work")
       ul.modal__list
         li.modal__item
           label.modal__label(for="modal-name") Full Name

@@ -12,6 +12,9 @@ import {
   checkEmail,
 } from './modules/form.js';
 
+const menuButton = document.querySelector('.menu-button');
+menuButton.addEventListener('click', () => menuButton.classList.toggle('menu-button--active'));
+
 // Modal
 const buttonOpenModal = document.querySelector('.work__button');
 const buttonCloseModal = document.querySelector('.modal__button-close');

@@ -1,5 +1,7 @@
 header.page-body__header.page-header
   nav.page-header__navigation
-    a.page-header__logo.link(href="#no_scroll")
-      img.page-header__image(src="img/homepage/logo-header.svg" width="48" height="48" alt="Company logo.")
-    button.page-header__button.link(type="button" aria-label="Open menu.")
+    a.page-header__logo-link(href="#no_scroll")
+      svg.page-header__logo-image(aria-label="Company logo.")
+        use(href="#logo")
+    button.page-header__button.menu-button(type="button" aria-label="Open menu.")
+      span.menu-button__lines

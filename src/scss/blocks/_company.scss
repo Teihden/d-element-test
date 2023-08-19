@@ -1,22 +1,50 @@
-.company__logo-link {
-  display: flex;
-  align-items: start;
-  gap: 15px;
-  margin: 0 0 31px;
-}
-
-.company__logo {
+.company__logo-image {
   display: block;
+  width: 48px;
+  height: 48px;
+  color: var(--platonic-blue);
+  transition: color 0.3s ease-in-out;
+  will-change: color;
 }
 
 .company__name {
   font-size: 28px;
   line-height: 46px;
   letter-spacing: 0.03em;
+  color: var(--white);
+}
+
+.company__logo-link {
+  display: flex;
+  gap: 15px;
+  align-items: start;
+
+  margin: 0 0 31px;
+
+  &:hover {
+    .company__logo-image {
+      color: var(--dark-cyan-blue);
+    }
+
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--white);
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
 }
 
 .company__list {
-  @include list-default;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   display: flex;
   flex-direction: column;

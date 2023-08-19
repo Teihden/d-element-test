@@ -2,18 +2,33 @@ section.catalog
   .catalog__container
     h2.catalog__heading.heading What we do to help our client grow in digital era,
     ul.catalog__list
-      li.catalog__item.card.card.card--business
-        img.card__image.card__image--business(src="img/homepage/card-business.svg" width="182" height="132" alt="Business.")
-        h3.card__heading.heading.heading--subheading Make Your business To Be Better Famous In Internet
-        p.card__text.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        a.card__link.link(href="#no_scroll") Learn more
+      li.catalog__item.card.card--business
+        .card__wrapper
+          svg.card__image.card__image--business
+            use(href="#business")
+          h3.card__heading.heading.heading--subheading Make Your business To Be Better Famous In Internet
+          p.card__text.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          a.card__link(href="#no_scroll")
+            span.card__link-text Learn more
+            svg.card__link-icon
+              use(href="#arrow")
       li.catalog__item.card.card--technology
-        img.card__image.card__image--technology(src="img/homepage/card-technology.svg" width="224" height="197" alt="Technology.")
-        h3.card__heading.heading.heading--subheading Bring Technology To Your Comfrotable Home
-        p.card__text.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        a.card__link.link(href="#no_scroll") Learn more
-      li.catalog__item.card.card.card--product
-        img.card__image.card__image--product(src="img/homepage/card-product.svg" width="156" height="131" alt="Product.")
-        h3.card__heading.heading.heading--subheading Build Your Digital Product That Suitable For Your Need
-        p.card__text.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        a.card__link.link(href="#no_scroll") Learn more
+        .card__wrapper
+          svg.card__image.card__image--technology
+            use(href="#technology")
+          h3.card__heading.heading.heading--subheading Bring Technology To Your Comfrotable Home
+          p.card__text.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          a.card__link(href="#no_scroll")
+            span.card__link-text Learn more
+            svg.card__link-icon
+              use(href="#arrow")
+      li.catalog__item.card.card--product
+        .card__wrapper
+          svg.card__image.card__image--product
+            use(href="#product")
+          h3.card__heading.heading.heading--subheading Build Your Digital Product That Suitable For Your Need
+          p.card__text.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          a.card__link(href="#no_scroll")
+            span.card__link-text Learn more
+            svg.card__link-icon
+              use(href="#arrow")

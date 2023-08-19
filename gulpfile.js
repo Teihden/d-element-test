@@ -1,24 +1,24 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-unresolved */
 import gulp from 'gulp';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import stylelint from '@ronilaukkarinen/gulp-stylelint';
 import pug from 'gulp-pug';
 import pugLinter from 'gulp-pug-linter';
-import htmlmin from 'gulp-html-minifier-terser';
-import imagemin from 'gulp-imagemin';
-import svgmin from 'gulp-svgmin';
-import { stacksvg } from 'gulp-stacksvg';
+import htmlMin from 'gulp-html-minifier-terser';
+import imageMin from 'gulp-imagemin';
+import svgMin from 'gulp-svgmin';
+import svgStore from 'gulp-svgstore';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import postcss from 'gulp-postcss';
 import csso from 'postcss-csso';
 import autoprefixer from 'autoprefixer';
-// eslint-disable-next-line import/no-unresolved
 import eslint from 'gulp-eslint-new';
 import terser from 'gulp-terser';
 import rename from 'gulp-rename';
 import sourcemaps from 'gulp-sourcemaps';
+import inject from 'gulp-inject';
 
 const browser = browserSync.create();
 const sass = gulpSass(dartSass);
@@ -27,7 +27,6 @@ const sass = gulpSass(dartSass);
 function lintSass() {
   return gulp.src('src/scss/**/*.scss')
     .pipe(stylelint({
-      configFile: './.stylelintrc.cjs',
       failAfterError: true,
       reporters: [
         { formatter: 'string', console: true },
@@ -41,10 +40,7 @@ function compileScss() {
     .pipe(sass({
       outputStyle: 'compressed', // compressed | expanded
     }))
-    .pipe(rename((path) => {
-      // eslint-disable-next-line no-param-reassign
-      path.extname = '.min.css';
-    }))
+    .pipe(rename((path) => ({ ...path, extname: '.min.css' })))
     .pipe(gulp.dest('build/css/', { sourcemaps: '.' }))
     .pipe(browser.stream());
 }
@@ -71,16 +67,15 @@ function lintPug() {
 function compilePug() {
   return gulp.src('src/pug/pages/*.pug')
     .pipe(pug({
-      pretty: false, // true | false
+      pretty: false,
       doctype: 'html',
     }))
-    .pipe(gulp.dest('build/'))
-    .pipe(browser.stream());
+    .pipe(gulp.dest('src/html'));
 }
 
 function optimizeHTML() {
   return gulp.src('build/*.html')
-    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build'));
 }
 
@@ -99,20 +94,52 @@ function optimizeJS() {
     .pipe(sourcemaps.init())
     .pipe(terser())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('build/js'));
+    .pipe(gulp.dest('build/js'))
+    .pipe(browser.stream());
 }
 
 // Images
-function imageMin() {
+function optimizeImages() {
   return gulp.src(['src/img/**/*.{png,jpg}', 'src/apple-touch-icon.png'], {
-    since: gulp.lastRun(imageMin),
+    since: gulp.lastRun(optimizeImages),
     base: 'src',
   })
-    .pipe(imagemin())
+    .pipe(imageMin())
     .pipe(gulp.dest('build'))
     .pipe(browserSync.stream());
 }
 
+// SVG
+async function optimizeSVG() {
+  gulp.src([
+    'src/img/**/*.svg',
+    '!src/img/icons/*.svg',
+  ])
+    .pipe(svgMin())
+    .pipe(gulp.dest('build/img'));
+}
+
+function makeSprite() {
+  const sprite = gulp.src('src/img/icons/*.svg')
+    .pipe(svgStore({ inlineSvg: true }));
+
+  function fileToString(_, file) {
+    return file.contents.toString('utf-8');
+  }
+
+  return gulp
+    .src('src/html/index.html')
+    .pipe(inject(sprite, {
+      starttag: '<!-- inject:svg -->',
+      endtag: '<!-- endinject -->',
+      transform: fileToString,
+      removeTags: true,
+    }))
+    .pipe(gulp.dest('build'))
+    .pipe(browser.stream());
+}
+
+// Copy resources
 function copyImages() {
   return gulp.src([
     'src/img/**/*.{png,jpg,svg}',
@@ -121,28 +148,8 @@ function copyImages() {
     .pipe(gulp.dest('build/img'));
 }
 
-// SVG
-async function svgMin() {
-  gulp.src([
-    'src/img/**/*.svg',
-    '!src/img/icons/*.svg',
-  ])
-    .pipe(svgmin())
-    .pipe(gulp.dest('build/img'));
-}
-
-function stackSVG() {
-  return gulp.src([
-    'src/img/icons/*.svg',
-  ])
-    .pipe(svgmin())
-    .pipe(stacksvg({ output: 'stack' }))
-    .pipe(gulp.dest('build/img/icons'));
-}
-
-// Copy resourses
 function copyMisc() {
-  return gulp.src(['src/favicon.ico', 'src/manifest.webmanifest'])
+  return gulp.src('src/*.{ico,webmanifest}')
     .pipe(gulp.dest('build/'))
     .pipe(browser.stream());
 }
@@ -150,6 +157,12 @@ function copyMisc() {
 function copyFonts() {
   return gulp.src('src/fonts/**/*')
     .pipe(gulp.dest('build/fonts/'))
+    .pipe(browser.stream());
+}
+
+function copyVendor() {
+  return gulp.src(['src/vendor/**/*.min.{css,js,mjs,mjs.map}'])
+    .pipe(gulp.dest('build/vendor/'))
     .pipe(browser.stream());
 }
 
@@ -171,10 +184,19 @@ function browsersync() {
 }
 
 function watcher(cb) {
-  gulp.watch('src/pug/**/*.pug', gulp.series(lintPug, compilePug));
+  gulp.watch('src/pug/**/*.pug', gulp.series(lintPug, compilePug, makeSprite));
   gulp.watch('src/scss/**/*.scss', gulp.series(lintSass, compileScss));
-  gulp.watch(['src/img/**/*.{png,jpg,svg}', 'src/apple-touch-icon.png'], copyImages);
-  gulp.watch(['src/favicon.ico', 'src/manifest.webmanifest'], copyMisc);
+  gulp.watch('src/img/icons/*.svg', makeSprite);
+  gulp.watch([
+    'src/img/**/*.{png,jpg,svg}',
+    'src/apple-touch-icon.png',
+    '!src/img/icons/*.svg',
+  ], copyImages);
+  gulp.watch([
+    'src/*.ico',
+    'src/*.webmanifest',
+  ], copyMisc);
+  gulp.watch(['src/vendor/**/*.min.{css,js,mjs}'], copyVendor);
   gulp.watch('src/fonts/**/*.{woff,woff2}', copyFonts);
   gulp.watch('src/js/**/*.js', gulp.series(lintJS, optimizeJS));
 
@@ -197,10 +219,11 @@ export const build = gulp.series(
     gulp.series(lintJS, optimizeJS),
     copyFonts,
     copyMisc,
-    imageMin,
-    svgMin,
-    stackSVG,
+    copyVendor,
+    optimizeImages,
+    optimizeSVG,
   ),
+  gulp.series(makeSprite),
 );
 
 // Default
@@ -212,10 +235,11 @@ export default gulp.series(
     gulp.series(lintJS, optimizeJS),
     copyFonts,
     copyMisc,
+    copyVendor,
     copyImages,
-    stackSVG,
   ),
   gulp.series(
+    makeSprite,
     watcher,
     browsersync,
   ),

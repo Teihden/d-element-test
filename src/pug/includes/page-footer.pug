@@ -3,8 +3,9 @@ footer.page-footer
     h2.visually-hidden Contacts and site navigation
     .page-footer__navigation
       .page-footer__nav-block.page-footer__nav-block--company.company
-        a.company__logo-link.link(href="#no_scroll")
-          img.company__logo(src="img/homepage/logo-footer.svg" width="48" height="48" alt="Company logo.")
+        a.company__logo-link(href="#no_scroll")
+          svg.company__logo-image(aria-label="Company logo.")
+            use(href="#logo")
           span.company__name Afrianska
         ul.company__list
           li.company__item.company__item--address Lorem ipsum dolor sit amet, consectetur adipisicing elit.

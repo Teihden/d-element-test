@@ -3,8 +3,8 @@
 
   padding: 0 30px;
 
-  background-color: $picton-blue;
-  color: $white;
+  background-color: var(--picton-blue);
+  color: var(--white);
 
   &::before {
     content: "";
@@ -17,7 +17,7 @@
 
     background: #316099;
 
-    @media (min-width: $tablet-width) {
+    @media (min-width: 700px) {
       position: absolute;
       top: 0;
       left: -96px;
@@ -44,16 +44,16 @@
 
     opacity: 0.4;
 
-    @media (min-width: $tablet-width) {
+    @media (min-width: 700px) {
       display: none;
     }
   }
 
- @media (min-width: $tablet-width) {
+ @media (min-width: 700px) {
     padding: 0 80px;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: 1200px) {
     padding: 0 80px;
   }
 }
@@ -65,7 +65,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
-  max-width: $max-container-width;
+  max-width: var(--max-container-width);
   margin: 0 auto;
   padding: 41px 30px 48px 0;
 
@@ -83,16 +83,16 @@
 
     opacity: 0.4;
 
-    @media (min-width: $tablet-width) {
+    @media (min-width: 700px) {
       display: block;
     }
   }
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     padding: 71px 60px 78px 0;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: 1200px) {
     padding: 91px 80px 98px 0;
   }
 }
@@ -101,7 +101,7 @@
   max-width: 460px;
   margin: 0;
 
-  @media (min-width: $mobile-width-only) {
+  @media (min-width: 400px) {
     margin: 0 30px 0 0;
   }
 }
@@ -123,35 +123,41 @@
   min-height: 56px;
   padding: 15px;
 
-  box-shadow: $button-shadow;
+  box-shadow: var(--button-shadow);
+
+  &:focus-visible {
+    outline: 1px solid var(--white);
+  }
 }
 
 .work__popup {
-  align-self: start;
   position: relative;
+  align-self: start;
   margin: 40px 1px 0 0;
 
-  @media (min-width: calc($tablet-width + 191px)) {
+  @media (min-width: 891px) {
     margin: 74px 1px 0 0;
   }
 }
 
 .work__popup-text {
-  text-align: center;
-  color: $dark-cyan-blue;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 0;
   position: absolute;
-  max-width: 400px;
-  width: 100%;
-
   bottom: calc(100% + 10px);
   left: 40%;
   z-index: 10;
-  opacity: 0;
 
-  background-color: $white;
+  width: 100%;
+  max-width: 400px;
+  margin: 0;
+  padding: 20px;
+  border-radius: 10px;
+
+  background-color: var(--white);
+  color: var(--dark-cyan-blue);
+
+  text-align: center;
+
+  opacity: 0;
 
   transition: opacity 0.2s ease-out;
 
@@ -163,6 +169,6 @@
 
     border-width: 6px 7px 0;
     border-style: solid;
-    border-color: $white transparent transparent;
+    border-color: var(--white) transparent transparent;
   }
 }

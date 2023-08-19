@@ -3,20 +3,16 @@
   display: grid;
   grid-template-rows: min-content 1fr min-content;
 
-  min-width: $min-container-width;
+  min-width: var(--min-container-width);
   min-height: 100%;
-  min-width: 100%;
   margin: 0 auto;
 
-  background-color: $white;
-  color: $dark-cyan-blue;
+  background-color: var(--white);
+  color: var(--dark-cyan-blue);
 
-  font-weight: 400;
-  font-size: 14px;
-  font-family: Gilroy, Arial, sans-serif;
-  line-height: 21px;
+  font: 400 14px/21px Gilroy, Arial, sans-serif;
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     font-size: 16px;
     line-height: 26px;
   }

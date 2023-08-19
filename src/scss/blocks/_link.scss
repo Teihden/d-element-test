@@ -1,19 +1,41 @@
 .link {
+  position: relative;
   color: inherit;
 
-  &:hover {
-    opacity: 0.8;
+  &::before {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--white);
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transition:
+      width 0.3s ease-in-out,
+      left 0.3s ease-in-out;
+    will-change: width, left;
   }
 
-  &:focus-visible {
-    opacity: 0.8;
+  &:hover {
+    &::before {
+      width: 100%;
+      left: 0;
+    }
   }
 
   &:focus {
-    opacity: 0.8;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--white);
   }
 
   &:active {
-    opacity: 0.6;
+    color: rgba(var(--white-rgba), 0.6);
+
+    &::before {
+      background-color: rgba(var(--white-rgba), 0.6);
+    }
   }
 }

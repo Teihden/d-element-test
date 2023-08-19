@@ -2,6 +2,8 @@
 [![CI](https://github.com/Teihden/d-element-test/actions/workflows/CI.yml/badge.svg)](https://github.com/Teihden/d-element-test/actions/workflows/CI.yml)
 [![Github Pages](https://github.com/Teihden/d-element-test/actions/workflows/github-pages-with-gulp.yml/badge.svg)](https://github.com/Teihden/d-element-test/actions/workflows/github-pages-with-gulp.yml)
 
+## About
+This repository contains a landing page. Includes animated buttons and links, animated background, form and modal window for submitting data.
 ## Setup
 
 ```shell

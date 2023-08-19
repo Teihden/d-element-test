@@ -3,6 +3,9 @@ html(lang="en")
   include ../includes/head.pug
 
   body.page-body
+    .visually-hidden
+      <!-- inject:svg -->
+      <!-- endinject -->
     include ../includes/page-header.pug
 
     main
@@ -13,4 +16,3 @@ html(lang="en")
 
     include ../includes/page-footer.pug
     include ../includes/modal.pug
-  script(src="js/script.js" type="module")

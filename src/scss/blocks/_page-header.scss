@@ -6,25 +6,38 @@
   background-color: transparent;
 }
 
-.page-header__logo {
+.page-header__logo-link {
   display: block;
+  color: var(--dark-state-blue);
+  transition: color 0.3s ease-in-out;
+  will-change: color;
+
+  &:hover {
+    color: var(--dark-cyan-blue);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--dark-cyan-blue);
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
 }
 
-.page-header__image {
+.page-header__logo-image {
   display: block;
+  width: 48px;
+  height: 48px;
 }
 
 .page-header__button {
-  @include button-default;
-
   position: relative;
-
-  width: 48px;
-  height: 48px;
-  margin: 0 -7px 0 0;
-
-  background-image: url("../img/icons/stack.svg#menu");
-  background-position: center;
-  background-size: 32px 32px;
-  background-repeat: no-repeat;
+  flex-shrink: 0;
+  margin: 0 -8px 0 0;
+  z-index: 20;
 }

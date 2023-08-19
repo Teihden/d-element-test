@@ -1,33 +1,27 @@
 .modal {
-  display: grid;
   position: fixed;
   inset: 0;
   z-index: 100;
+  display: grid;
   place-items: center;
 
-  background-color: color.adjust($white, $alpha: -0.1);
+  background-color: rgba(var(--white-rgba), 0.9);
 
-  cursor: pointer;
-
-  pointer-events: none;
   opacity: 0;
-  transform: scale(1.15);
+  cursor: pointer;
+  pointer-events: none;
 
   transition:
-    transform 0.1s ease-out,
-    opacity 0.1s ease-out;
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out;
+  transform: scale(1.15);
 
   will-change: transform, opacity;
 
   &--opened {
-    pointer-events: auto;
     opacity: 1;
-
+    pointer-events: auto;
     transform: scale(1);
-
-    transition:
-      transform 0.2s ease-out,
-      opacity 0.2s ease-out;
   }
 }
 
@@ -36,17 +30,18 @@
   overflow: auto;
 
   width: 100%;
-  min-width: $min-container-width;
+  min-width: var(--min-container-width);
   max-width: 540px;
   max-height: 90vh;
   padding: 30px;
 
-  background-color: $white;
-  color: $dark-cyan-blue;
-  box-shadow: $form-shadow;
+  background-color: var(--white);
+  color: var(--dark-cyan-blue);
+  box-shadow: var(--form-shadow);
+
   cursor: default;
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     padding: 56px;
   }
 }
@@ -58,13 +53,22 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     margin: 0 0 48px;
   }
 }
 
 .modal__button-close {
-  @include button-default;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+  color: var(--nocturne);
+  transition: color 0.3s ease-in-out;
+  will-change: color;
 
   position: absolute;
   top: 54px;
@@ -73,18 +77,16 @@
   width: 30px;
   height: 30px;
 
-  background-image: url("../img/icons/stack.svg#cross");
-  background-position: center;
-  background-size: 23px 23px;
-  background-repeat: no-repeat;
-
   &:hover {
-    opacity: 0.8;
+    color: var(--dark-cyan-blue);
   }
 
   &:focus {
-    outline-color: $dark-cyan-blue;
-    opacity: 0.8;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--dark-cyan-blue);
   }
 
   &:active {
@@ -92,8 +94,15 @@
   }
 }
 
+.modal__cross {
+  width: 23px;
+  height: 23px;
+}
+
 .modal__list {
-  @include list-default;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   display: flex;
   flex-direction: column;
@@ -102,7 +111,7 @@
 
   margin: 0 0 30px;
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     margin: 0 0 49px;
   }
 }
@@ -120,7 +129,7 @@
   min-height: 18px;
   margin: -4px 0 0;
 
-  color: $error;
+  color: var(--error);
 
   font-size: 12px;
   line-height: 18px;
@@ -138,38 +147,35 @@
 }
 
 .modal__input {
-  border: 1px solid color.adjust($nocturne, $alpha: -0.6);
+  padding: 10px 15px;
+  border: 1px solid rgba(var(--nocturne-rgba), 0.4);
   border-radius: 10px;
 
-  background-color: $white;
-  color: $dark-cyan-blue;
+  background-color: var(--white);
+  color: var(--dark-cyan-blue);
 
   font-weight: 300;
   font-size: 16px;
   font-family: inherit;
   line-height: 30px;
   letter-spacing: 0.04em;
-  padding: 10px 15px;
-
-  @media (min-width: $tablet-width) {
-    padding: 20px 25px;
-  }
 
   appearance: textfield;
 
   &::placeholder {
+    color: var(--dark-cyan-blue);
+
     font-weight: 300;
     font-size: 16px;
     font-family: inherit;
     line-height: 30px;
     letter-spacing: 0.04em;
-    color: $dark-cyan-blue;
 
     opacity: 0.6;
   }
 
   &:focus {
-    outline-color: $dark-cyan-blue;
+    outline-color: var(--dark-cyan-blue);
   }
 
   &:active {
@@ -177,7 +183,7 @@
   }
 
   &:disabled {
-    background-color: $white;
+    background-color: var(--white);
     opacity: 0.3;
 
     &:hover,
@@ -186,6 +192,10 @@
       opacity: 0.3;
     }
   }
+
+  @media (min-width: 700px) {
+    padding: 20px 25px;
+  }
 }
 
 .modal__textarea {
@@ -193,10 +203,10 @@
 
   height: 144px;
   padding: 10px 15px;
-  border: 1px solid color.adjust($nocturne, $alpha: -0.6);
+  border: 1px solid rgba(var(--nocturne-rgba), 0.4);
   border-radius: 10px;
 
-  color: $dark-cyan-blue;
+  color: var(--dark-cyan-blue);
 
   font-weight: 300;
   font-size: 16px;
@@ -206,35 +216,38 @@
 
   resize: none;
 
-  @media (min-width: $tablet-width) {
-    padding: 20px 25px;
-  }
-
   &::placeholder {
+    color: var(--dark-cyan-blue);
+
     font-weight: 300;
     font-size: 16px;
     font-family: inherit;
     line-height: 30px;
     letter-spacing: 0.04em;
-    color: $dark-cyan-blue;
 
     opacity: 0.6;
   }
 
   &:focus {
-    outline-color: $dark-cyan-blue;
+    outline-color: var(--dark-cyan-blue);
+  }
+
+  @media (min-width: 700px) {
+    padding: 20px 25px;
   }
 }
 
 .modal__button-submit {
   width: 100%;
   padding: 23px;
-
   text-transform: uppercase;
+  box-shadow: var(--button-shadow);
 
-  filter: $form-button-shadow;
+  &:hover {
+    box-shadow: var(--button-shadow-hover);
+  }
 }
 
 .modal__field--invalid {
-  outline: 1px solid $error;
+  outline: 1px solid var(--error);
 }

@@ -1,16 +1,14 @@
-@use "sass:color";
-
-@import "global/variables";
 @import "global/fonts";
-@import "global/mixins";
 @import "global/global";
 @import "blocks/button";
+@import "blocks/menu-button";
 @import "blocks/heading";
 @import "blocks/text";
 @import "blocks/link";
 @import "blocks/page-body";
 @import "blocks/page-header";
 @import "blocks/hero";
+@import "blocks/illustration";
 @import "blocks/catalog";
 @import "blocks/card";
 @import "blocks/clients";

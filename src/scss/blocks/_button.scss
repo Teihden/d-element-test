@@ -2,8 +2,8 @@
   border: 0;
   border-radius: 10px;
 
-  background-color: $picton-blue;
-  color: $white;
+  background-color: var(--picton-blue);
+  color: var(--white);
 
   font-weight: 400;
   font-size: 16px;
@@ -12,27 +12,33 @@
   letter-spacing: 0.04em;
   text-align: center;
   text-transform: capitalize;
+  transition-property: background-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+  will-change: background-color, box-shadow;
 
   cursor: pointer;
   user-select: none;
 
-  &:hover,
-  &:focus {
-    background-color: $dark-cyan-blue;
+  &:hover {
+    background-color: var(--dark-cyan-blue);
   }
 
   &:focus {
-    background-color: $dark-cyan-blue;
-    outline: $dark-cyan-blue;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--dark-cyan-blue);
   }
 
   &:active {
-    background-color: $dark-cyan-blue;
-    color: rgba($white, 0.3);
+    color: rgba(var(--white-rgba), 0.3);
   }
 
   &:disabled {
-    background-color: $titanium;
-    cursor: default;
+    background-color: var(--titanium);
+    cursor: not-allowed;
+    color: var(--white);
   }
 }

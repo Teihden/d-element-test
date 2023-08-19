@@ -1,20 +1,20 @@
 .clients {
   padding: 46px 30px 64px;
-  background-color: $picton-blue;
-  color: $white;
+  background-color: var(--picton-blue);
+  color: var(--white);
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     padding: 76px 80px 94px;
     border-radius: 200px 0 0;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: 1200px) {
     padding: 96px 80px 124px;
   }
 }
 
 .clients-container {
-  max-width: $max-container-width;
+  max-width: var(--max-container-width);
   margin: 0 auto;
 }
 
@@ -27,11 +27,11 @@
   max-width: 860px;
   margin: 0 0 70px;
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     margin: 0 0 90px;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: 1200px) {
     margin: 0 0 111px;
   }
 }
@@ -47,7 +47,9 @@
 }
 
 .clients__list {
-  @include list-default;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   position: relative;
   display: grid;
@@ -63,7 +65,7 @@
     width: 100%;
     height: 1px;
 
-    background-color: $picton-blue;
+    background-color: var(--picton-blue);
   }
 
   &::before {
@@ -76,14 +78,14 @@
     width: 1px;
     height: 100%;
 
-    background-color: $picton-blue;
+    background-color: var(--picton-blue);
   }
 
-  @media (min-width: $tablet-width) {
+  @media (min-width: 700px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
   }
 }
@@ -91,32 +93,53 @@
 .clients__item {
   display: grid;
   place-items: center;
-  padding: 30px;
 
   min-height: 128px;
-  border-right: 1px solid color.adjust($white, $alpha: -0.6);
-  border-bottom: 1px solid color.adjust($white, $alpha: -0.6);
+  padding: 30px;
+  border-right: 1px solid rgba(var(--white-rgba), 0.4);
+  border-bottom: 1px solid rgba(var(--white-rgba), 0.4);
 
-  background-color: $picton-blue;
+  background-color: var(--picton-blue);
 
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.02em;
 
   &:last-child {
-    background-color: color.adjust($dark-cyan-blue, $alpha: -0.8);
+    padding: 0;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: 1200px) {
     font-size: 20px;
-  line-height: 46px;
+    line-height: 46px;
   }
 }
 
 .clients__link {
   display: grid;
   place-items: center;
-
+  background-color: rgba(var(--dark-cyan-blue-rgba), 0.2);
+  padding: 30px;
+  color: var(--white);
   width: 100%;
   height: 100%;
+  transition: background-color 0.3s ease-in-out;
+  will-change: background-color;
+
+  &:hover {
+    background-color: var(--nocturne);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--nocturne);
+  }
+
+  &:active {
+    color: rgba(var(--white-rgba), 0.6);
+  }
 }

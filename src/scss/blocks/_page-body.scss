@@ -12,7 +12,7 @@
 
   font: 400 14px/21px Gilroy, Arial, sans-serif;
 
-  @media (width >= 700px) {
+  @media (min-width: 700px) {
     font-size: 16px;
     line-height: 26px;
   }

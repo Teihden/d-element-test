@@ -4,7 +4,7 @@
   line-height: 45px;
   letter-spacing: 0.05em;
 
-  @media (width >= 700px) {
+  @media (min-width: 700px) {
     font-size: 36px;
     line-height: 46px;
   }
@@ -17,7 +17,7 @@
   line-height: 63px;
   letter-spacing: 0.04em;
 
-  @media (width >= 700px) {
+  @media (min-width: 700px) {
     font-size: 64px;
     line-height: 74px;
   }
@@ -27,7 +27,7 @@
   font-size: 18px;
   line-height: 26px;
 
-  @media (width >= 700px) {
+  @media (min-width: 700px) {
     font-size: 20px;
     line-height: 30px;
   }

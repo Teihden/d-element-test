@@ -36,10 +36,10 @@
   }
 
   &:active {
-    color: rgb(var(--white-rgba) 0.6);
+    color: rgba(var(--white-rgba) 0.6);
 
     &::before {
-      background-color: rgb(var(--white-rgba) 0.6);
+      background-color: rgba(var(--white-rgba) 0.6);
     }
   }
 }

@@ -23,7 +23,7 @@
 
     background-color: var(--nocturne);
 
-    transition: top 0.3s ease-in-out 0.3s, transform 0.3s ease-in-out 0, background-color 0.3s ease-in-out 0;
+    transition: top 0.3s ease-in-out 0.3s, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
     will-change: top, transform, background-color;
   }
@@ -39,7 +39,7 @@
 
     background-color: var(--nocturne);
 
-    transition: bottom 0.3s ease-in-out 0.3s, transform 0.3s ease-in-out 0, background-color 0.3s ease-in-out 0;
+    transition: bottom 0.3s ease-in-out 0.3s, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
     will-change: top, transform, background-color;
   }
@@ -105,5 +105,3 @@
     }
   }
 }
-
-

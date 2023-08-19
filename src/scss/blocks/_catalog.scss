@@ -1,11 +1,11 @@
 .catalog {
   padding: 82px 30px 81px;
 
-  @media (width >= 700px) {
+  @media (min-width: 700px) {
     padding: 122px 80px 121px;
   }
 
-  @media (width >= 1200px) {
+  @media (min-width: 1200px) {
     padding: 192px 80px 212px;
   }
 }
@@ -17,7 +17,7 @@
   margin: 0 auto;
   padding: 0;
 
-  @media (width >= 900px) {
+  @media (min-width: 900px) {
     padding: 0 0 0 81px;
   }
 }
@@ -28,7 +28,7 @@
   margin: 0 0 40px;
   color: var(--dark-state-blue);
 
-  @media (width >= 900px) {
+  @media (min-width: 900px) {
     position: absolute;
     top: 0;
     left: 0;
@@ -47,11 +47,11 @@
 
   list-style: none;
 
-  @media (width >= 700px) {
+  @media (min-width: 700px) {
     gap: 70px;
   }
 
-  @media (width >= 900px) {
+  @media (min-width: 900px) {
     grid-template-rows: repeat(2, auto);
     grid-template-columns: repeat(2, 1fr);
     gap: 100px;

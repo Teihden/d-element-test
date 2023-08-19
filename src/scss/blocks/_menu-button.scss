@@ -1,40 +1,46 @@
 // stylelint-disable no-descending-specificity
 .menu-button__lines {
   position: relative;
-  background-color: var(--nocturne);
-  height: 3px;
+
   width: 24px;
-  margin: -1px 0 0 0;
+  height: 3px;
+  margin: -1px 0 0;
+
+  background-color: var(--nocturne);
+
   transition: background-color 0.3s ease-in-out;
+
   will-change: background-color;
 
   &::before {
-    position: absolute;
     content: "";
-    width: 100%;
-    height: 100%;
+    position: absolute;
     top: -7px;
     left: 0;
+
+    width: 100%;
+    height: 100%;
+
     background-color: var(--nocturne);
-    transition-property: top, transform, background-color;
-    transition-duration: 0.3s;
-    transition-delay: 0.3s, 0, 0;
-    transition-timing-function: ease-in-out;
+
+    transition: top 0.3s ease-in-out 0.3s, transform 0.3s ease-in-out 0, background-color 0.3s ease-in-out 0;
+
     will-change: top, transform, background-color;
   }
 
   &::after {
-    position: absolute;
     content: "";
-    width: 100%;
-    height: 100%;
+    position: absolute;
     bottom: -7px;
     left: 0;
+
+    width: 100%;
+    height: 100%;
+
     background-color: var(--nocturne);
-    transition-property: bottom, transform, background-color;
-    transition-duration: 0.3s;
-    transition-delay: 0.3s, 0, 0;
-    transition-timing-function: ease-in-out;
+
+    transition: bottom 0.3s ease-in-out 0.3s, transform 0.3s ease-in-out 0, background-color 0.3s ease-in-out 0;
+
     will-change: top, transform, background-color;
   }
 }
@@ -42,11 +48,13 @@
 .menu-button {
   display: grid;
   place-items: center;
-  background-color: transparent;
+
   width: 48px;
   height: 48px;
   padding: 0;
   border: none;
+
+  background-color: transparent;
 
   &:hover {
     outline: none;
@@ -78,14 +86,14 @@
       background-color: transparent;
 
       &::before {
-        transition-delay: 0s, 0.3s, 0.3s;
         top: 0;
+        transition-delay: 0s, 0.3s, 0.3s;
         transform: rotate(45deg);
       }
 
       &::after {
-        transition-delay: 0s, 0.3s, 0.3s;
         bottom: 0;
+        transition-delay: 0s, 0.3s, 0.3s;
         transform: rotate(-45deg);
       }
     }

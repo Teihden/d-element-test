@@ -8,6 +8,7 @@
   top: 52px;
   right: 20px;
   z-index: 20;
+
   width: 648px;
   height: 490px;
 }
@@ -17,8 +18,10 @@
   top: 72px;
   right: 97px;
   z-index: 30;
+
   width: 188px;
   height: 188px;
+
   animation: house 11s linear infinite;
 }
 
@@ -49,8 +52,10 @@
   top: -8px;
   right: 46px;
   z-index: 30;
+
   width: 292px;
   height: 139px;
+
   animation: icons 14s linear infinite;
 }
 
@@ -81,8 +86,10 @@
   bottom: 74px;
   left: 78px;
   z-index: 30;
+
   width: 137px;
   height: 232px;
+
   animation: man 11s linear infinite;
 }
 
@@ -113,8 +120,10 @@
   bottom: 173px;
   left: 173px;
   z-index: 40;
+
   width: 280px;
   height: 190px;
+
   animation: platform 11s linear infinite;
 }
 
@@ -145,8 +154,10 @@
   bottom: 1px;
   left: -1px;
   z-index: 10;
+
   width: 688px;
   height: 580px;
+
   animation: shadow 7s linear infinite;
 }
 
@@ -174,11 +185,13 @@
 
 .illustration__woman {
   position: absolute;
-  bottom: 199px;
   right: 9px;
+  bottom: 199px;
   z-index: 40;
+
   width: 179px;
   height: 214px;
+
   animation: woman 10s linear infinite;
 }
 

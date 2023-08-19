@@ -1,5 +1,5 @@
+import { Modal } from './modules/modal.js';
 import { initMenu } from './modules/menu.js';
-import { Modal } from './modules/Modal.js';
 
 initMenu();
 

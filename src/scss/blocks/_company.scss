@@ -1,17 +1,22 @@
 .company__logo-image {
   display: block;
+
   width: 48px;
   height: 48px;
+
   color: var(--platonic-blue);
+
   transition: color 0.3s ease-in-out;
+
   will-change: color;
 }
 
 .company__name {
+  color: var(--white);
+
   font-size: 28px;
   line-height: 46px;
   letter-spacing: 0.03em;
-  color: var(--white);
 }
 
 .company__logo-link {
@@ -42,13 +47,14 @@
 }
 
 .company__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
   display: flex;
   flex-direction: column;
   row-gap: 21px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
 }
 
 .company__item {

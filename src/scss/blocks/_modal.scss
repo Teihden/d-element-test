@@ -5,7 +5,7 @@
   display: grid;
   place-items: center;
 
-  background-color: rgba(var(--white-rgba), 0.9);
+  background-color: rgb(var(--white-rgba) 0.9);
 
   opacity: 0;
   cursor: pointer;
@@ -41,7 +41,7 @@
 
   cursor: default;
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     padding: 56px;
   }
 }
@@ -53,29 +53,32 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     margin: 0 0 48px;
   }
 }
 
 .modal__button-close {
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  user-select: none;
-  color: var(--nocturne);
-  transition: color 0.3s ease-in-out;
-  will-change: color;
-
   position: absolute;
   top: 54px;
   right: 53px;
+  display: grid;
+  place-items: center;
 
   width: 30px;
   height: 30px;
+  padding: 0;
+  border: 0;
+
+  background-color: transparent;
+  color: var(--nocturne);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: color 0.3s ease-in-out;
+
+  will-change: color;
 
   &:hover {
     color: var(--dark-cyan-blue);
@@ -100,18 +103,18 @@
 }
 
 .modal__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
   display: flex;
   flex-direction: column;
   row-gap: 10px;
   justify-content: start;
 
+  margin: 0;
   margin: 0 0 30px;
+  padding: 0;
 
-  @media (min-width: 700px) {
+  list-style: none;
+
+  @media (width >= 700px) {
     margin: 0 0 49px;
   }
 }
@@ -148,7 +151,7 @@
 
 .modal__input {
   padding: 10px 15px;
-  border: 1px solid rgba(var(--nocturne-rgba), 0.4);
+  border: 1px solid rgb(var(--nocturne-rgba) 0.4);
   border-radius: 10px;
 
   background-color: var(--white);
@@ -193,7 +196,7 @@
     }
   }
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     padding: 20px 25px;
   }
 }
@@ -203,7 +206,7 @@
 
   height: 144px;
   padding: 10px 15px;
-  border: 1px solid rgba(var(--nocturne-rgba), 0.4);
+  border: 1px solid rgb(var(--nocturne-rgba) 0.4);
   border-radius: 10px;
 
   color: var(--dark-cyan-blue);
@@ -232,7 +235,7 @@
     outline-color: var(--dark-cyan-blue);
   }
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     padding: 20px 25px;
   }
 }
@@ -240,8 +243,10 @@
 .modal__button-submit {
   width: 100%;
   padding: 23px;
-  text-transform: uppercase;
+
   box-shadow: var(--button-shadow);
+
+  text-transform: uppercase;
 
   &:hover {
     box-shadow: var(--button-shadow-hover);

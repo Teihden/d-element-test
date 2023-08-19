@@ -3,12 +3,12 @@
   background-color: var(--picton-blue);
   color: var(--white);
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     padding: 76px 80px 94px;
     border-radius: 200px 0 0;
   }
 
-  @media (min-width: 1200px) {
+  @media (width >= 1200px) {
     padding: 96px 80px 124px;
   }
 }
@@ -27,11 +27,11 @@
   max-width: 860px;
   margin: 0 0 70px;
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     margin: 0 0 90px;
   }
 
-  @media (min-width: 1200px) {
+  @media (width >= 1200px) {
     margin: 0 0 111px;
   }
 }
@@ -47,13 +47,14 @@
 }
 
 .clients__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
   position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
 
   &::after {
     content: "";
@@ -81,11 +82,11 @@
     background-color: var(--picton-blue);
   }
 
-  @media (min-width: 700px) {
+  @media (width >= 700px) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
-  @media (min-width: 1200px) {
+  @media (width >= 1200px) {
     grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
   }
 }
@@ -96,8 +97,8 @@
 
   min-height: 128px;
   padding: 30px;
-  border-right: 1px solid rgba(var(--white-rgba), 0.4);
-  border-bottom: 1px solid rgba(var(--white-rgba), 0.4);
+  border-right: 1px solid rgb(var(--white-rgba) 0.4);
+  border-bottom: 1px solid rgb(var(--white-rgba) 0.4);
 
   background-color: var(--picton-blue);
 
@@ -109,7 +110,7 @@
     padding: 0;
   }
 
-  @media (min-width: 1200px) {
+  @media (width >= 1200px) {
     font-size: 20px;
     line-height: 46px;
   }
@@ -118,12 +119,16 @@
 .clients__link {
   display: grid;
   place-items: center;
-  background-color: rgba(var(--dark-cyan-blue-rgba), 0.2);
-  padding: 30px;
-  color: var(--white);
+
   width: 100%;
   height: 100%;
+  padding: 30px;
+
+  background-color: rgb(var(--dark-cyan-blue-rgba) 0.2);
+  color: var(--white);
+
   transition: background-color 0.3s ease-in-out;
+
   will-change: background-color;
 
   &:hover {
@@ -135,11 +140,11 @@
   }
 
   &:focus-visible {
-    outline: none;
     background-color: var(--nocturne);
+    outline: none;
   }
 
   &:active {
-    color: rgba(var(--white-rgba), 0.6);
+    color: rgb(var(--white-rgba) 0.6);
   }
 }

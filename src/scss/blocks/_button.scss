@@ -12,13 +12,15 @@
   letter-spacing: 0.04em;
   text-align: center;
   text-transform: capitalize;
-  transition-property: background-color, box-shadow;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
-  will-change: background-color, box-shadow;
 
   cursor: pointer;
   user-select: none;
+
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
+  transition-property: background-color, box-shadow;
+
+  will-change: background-color, box-shadow;
 
   &:hover {
     background-color: var(--dark-cyan-blue);
@@ -33,12 +35,12 @@
   }
 
   &:active {
-    color: rgba(var(--white-rgba), 0.3);
+    color: rgb(var(--white-rgba) 0.3);
   }
 
   &:disabled {
     background-color: var(--titanium);
-    cursor: not-allowed;
     color: var(--white);
+    cursor: not-allowed;
   }
 }

@@ -8,8 +8,11 @@
 
 .page-header__logo-link {
   display: block;
+
   color: var(--dark-state-blue);
+
   transition: color 0.3s ease-in-out;
+
   will-change: color;
 
   &:hover {
@@ -37,7 +40,8 @@
 
 .page-header__button {
   position: relative;
-  flex-shrink: 0;
-  margin: 0 -8px 0 0;
   z-index: 20;
+  flex-shrink: 0;
+
+  margin: 0 -8px 0 0;
 }

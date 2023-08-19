@@ -1,9 +1,9 @@
 // Initial setups
 :root {
   // Color
-  --white: #ffffff;
+  --white: #fff;
   --white-rgba: 255, 255, 255;
-  --black: #000000;
+  --black: #000;
   --dark-cyan-blue: #1f3f68;
   --dark-cyan-blue-rgba: 31, 63, 104;
   --dark-state-blue: #316099;
@@ -15,14 +15,14 @@
   --error: #f00;
 
   // Gradient
-  --hero-gradient: linear-gradient(0deg, #98C3E8 8.84%, rgba(152, 195, 232, 0) 31.12%);
-  --card-gradient: linear-gradient(135deg, rgb(255, 255, 255) 20%, rgba(16, 112, 177, 0.07));
+  --hero-gradient: linear-gradient(0deg, #98C3E8 8.84%, rgb(152 195 232 / 0%) 31.12%);
+  --card-gradient: linear-gradient(135deg, rgb(255 255 255) 20%, rgb(16 112 177 / 7%));
 
   // Shadows
-  --card-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
-  --button-shadow: 5px 10px 20px rgba(53, 110, 173, 0.2);
-  --button-shadow-hover: 5px 10px 20px rgba(31, 63, 104, 0.4);
-  --form-shadow: 5px 10px 50px rgba(16, 112, 177, 0.3);
+  --card-shadow: 5px 20px 50px rgb(16 112 177 / 20%);
+  --button-shadow: 5px 10px 20px rgb(53 110 173 / 20%);
+  --button-shadow-hover: 5px 10px 20px rgb(31 63 104 / 40%);
+  --form-shadow: 5px 10px 50px rgb(16 112 177 / 30%);
 
   // Widths
   --min-container-width: 360px;

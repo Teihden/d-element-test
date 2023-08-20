@@ -7,8 +7,6 @@
 *.sublime*
 node_modules
 npm-debug.*
-src/css/*.css
-src/css/*.map
 Thumbs.db
 *.code-workspace
 **/CNAME

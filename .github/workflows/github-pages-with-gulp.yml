@@ -27,10 +27,13 @@ jobs:
         with:
           node-version: "lts/*"
 
+      - name: Install npm packages
+        run: |
+          make ci
+
       - name: Build
         run: |
-          npm ci
-          npm run build
+          make build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3

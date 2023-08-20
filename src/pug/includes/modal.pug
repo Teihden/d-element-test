@@ -8,14 +8,14 @@ section.modal(data-modal="form-modal")
       ul.modal__list
         li.modal__item
           label.modal__label(for="modal-name") Full Name
-          input.modal__input.modal__input--name.modal__field#modal-name(type="text" name="name" placeholder="Your Name")
-          p.modal__alert.modal__alert--name
+          input.modal__input#modal-name(type="text" name="name" placeholder="Your Name" data-input="name" data-check-required data-check-minlength="3")
+          p.modal__alert(data-alert="name")
         li.modal__item
           label.modal__label(for="modal-email") Email
-          input.modal__input.modal__input--email.modal__field#modal-email(type="email" name="email" placeholder="Your Email")
-          p.modal__alert.modal__alert--email
+          input.modal__input#modal-email(type="email" name="email" placeholder="Your Email" data-input="email" data-check-required data-check-minlength="6" data-check-email)
+          p.modal__alert(data-alert="email")
         li.modal__item
           label.modal__label(for="modal-message") Message
-          textarea.modal__textarea.modal__field#modal-message(name="message" placeholder="Your Message")
-          p.modal__alert.modal__alert--message
-      button.modal__button-submit.button(type="submit") Submit
+          textarea.modal__textarea#modal-message(name="message" placeholder="Your Message" data-input="message" data-check-required data-check-minlength="100")
+          p.modal__alert(data-alert="message")
+      button.modal__button-submit.button(type="submit" data-button="submit") Submit

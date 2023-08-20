@@ -22,7 +22,7 @@
 .company__logo-link {
   display: flex;
   gap: 15px;
-  align-items: start;
+  align-items: flex-start;
 
   margin: 0 0 31px;
 
@@ -50,11 +50,6 @@
   display: flex;
   flex-direction: column;
   row-gap: 21px;
-
-  margin: 0;
-  padding: 0;
-
-  list-style: none;
 }
 
 .company__item {

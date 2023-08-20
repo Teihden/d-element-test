@@ -21,12 +21,12 @@ make lint
 ## Gulp tasks
 
 ```shell
-# To package a site for production run
-npm run build
-
 # To get started developing a site with a development server (default task)
-npm start
+make start
+
+# To package a site for production run
+make build
 
 # To start server
-npm run server
+make server
 ```

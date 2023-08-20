@@ -1,47 +1,50 @@
 import { handleEscapeKey, handleEnterKey } from './utils.js';
 
 class Modal {
-  static onModalInnerClick = (evt) => evt.stopPropagation();
+  static #onModalInnerClick = (evt) => evt.stopPropagation();
 
-  static onOpenModalButtonKeydown(evt) {
+  static #onOpenModalButtonKeydown(evt) {
     handleEnterKey(this.openModal, evt);
   }
 
-  static onCloseModalButtonKeydown(evt) {
+  static #onCloseModalButtonKeydown(evt) {
     handleEnterKey(this.closeModal, evt);
   }
 
-  constructor(modalName, openModalCb = null) {
-    this.elements = {
-      modal: document.querySelector(`[data-modal=${modalName}]`),
-      modalInner: document.querySelector(`[data-modal-inner=${modalName}]`),
+  constructor(modalElement, openModalCb = null, closeModalCb = null) {
+    const modalName = modalElement.dataset.modal;
+
+    this.element = {
+      modal: modalElement,
+      modalInner: modalElement.querySelector(`[data-modal-inner=${modalName}]`),
       openModalButton: document.querySelector(`[data-open-button=${modalName}]`),
-      closeModalButton: document.querySelector(`[data-close-button=${modalName}]`),
+      closeModalButton: modalElement.querySelector(`[data-close-button=${modalName}]`),
     };
 
     this.openModalCb = openModalCb;
+    this.closeModalCb = closeModalCb;
 
     const {
       modal,
       modalInner,
       openModalButton,
       closeModalButton,
-    } = this.elements;
+    } = this.element;
 
     modal.addEventListener('click', this.closeModal);
-    modalInner.addEventListener('click', Modal.onModalInnerClick);
+    modalInner.addEventListener('click', Modal.#onModalInnerClick);
 
     openModalButton.addEventListener('click', this.openModal);
-    openModalButton.addEventListener('keydown', Modal.onOpenModalButtonKeydown.bind(this));
+    openModalButton.addEventListener('keydown', Modal.#onOpenModalButtonKeydown.bind(this));
 
     closeModalButton.addEventListener('click', this.closeModal);
-    closeModalButton.addEventListener('keydown', Modal.onCloseModalButtonKeydown.bind(this));
+    closeModalButton.addEventListener('keydown', Modal.#onCloseModalButtonKeydown.bind(this));
   }
 
   #onDocumentKeydown = (evt) => handleEscapeKey(this.closeModal, evt);
 
   openModal = () => {
-    const { modal } = this.elements;
+    const { modal } = this.element;
 
     modal.classList.add('modal--active');
     document.body.style.setProperty('overflow', 'hidden');
@@ -53,11 +56,15 @@ class Modal {
   };
 
   closeModal = () => {
-    const { modal } = this.elements;
+    const { modal } = this.element;
 
     modal.classList.remove('modal--active');
     document.body.style.removeProperty('overflow');
     document.removeEventListener('keydown', this.#onDocumentKeydown);
+
+    if (this.closeModalCb) {
+      this.closeModalCb();
+    }
   };
 }
 

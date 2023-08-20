@@ -13,12 +13,9 @@
   text-align: center;
   text-transform: capitalize;
 
-  cursor: pointer;
-  user-select: none;
-
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.3s;
-  transition-property: background-color, box-shadow;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
 
   will-change: background-color, box-shadow;
 

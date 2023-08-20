@@ -1,7 +1,5 @@
 /* eslint-disable import/no-unresolved */
 import gulp from 'gulp';
-import dartSass from 'sass';
-import gulpSass from 'gulp-sass';
 import stylelint from '@ronilaukkarinen/gulp-stylelint';
 import pug from 'gulp-pug';
 import pugLinter from 'gulp-pug-linter';
@@ -12,20 +10,17 @@ import svgStore from 'gulp-svgstore';
 import { deleteAsync } from 'del';
 import browserSync from 'browser-sync';
 import postcss from 'gulp-postcss';
-import csso from 'postcss-csso';
-import autoprefixer from 'autoprefixer';
 import eslint from 'gulp-eslint-new';
 import terser from 'gulp-terser';
 import rename from 'gulp-rename';
-import sourcemaps from 'gulp-sourcemaps';
 import inject from 'gulp-inject';
+import replace from 'gulp-replace';
 
 const browser = browserSync.create();
-const sass = gulpSass(dartSass);
 
 // CSS
-function lintSass() {
-  return gulp.src('src/scss/**/*.scss')
+function lintCSS() {
+  return gulp.src('src/css/**/*.css')
     .pipe(stylelint({
       failAfterError: true,
       reporters: [
@@ -35,23 +30,12 @@ function lintSass() {
     }));
 }
 
-function compileScss() {
-  return gulp.src('src/scss/**/*.scss', { sourcemaps: true })
-    .pipe(sass({
-      outputStyle: 'compressed', // compressed | expanded
-    }))
+function makeCSS() {
+  return gulp.src('src/css/styles.css')
+    .pipe(postcss())
     .pipe(rename((path) => ({ ...path, extname: '.min.css' })))
-    .pipe(gulp.dest('build/css/', { sourcemaps: '.' }))
+    .pipe(gulp.dest('build/css'))
     .pipe(browser.stream());
-}
-
-function postCSS() {
-  return gulp.src('build/css/*.css')
-    .pipe(postcss([
-      autoprefixer(),
-      csso(),
-    ]))
-    .pipe(gulp.dest('build/css'));
 }
 
 // HTML
@@ -74,12 +58,24 @@ function compilePug() {
 
 function optimizeHTML() {
   return gulp.src('build/*.html')
+    .pipe(replace(/src="(.*?)js"/g, 'src="$1min.js"'))
     .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build'));
 }
 
 // Javascript
 function lintJS() {
+  if (process.env.NODE_ENV === 'development') {
+    return gulp.src('src/js/**/*.js')
+      .pipe(eslint({
+        fix: true,
+      }))
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError())
+      .pipe(gulp.dest('build/js'))
+      .pipe(browser.stream());
+  }
+
   return gulp.src('src/js/**/*.js')
     .pipe(eslint({
       fix: true,
@@ -90,11 +86,10 @@ function lintJS() {
 
 function optimizeJS() {
   return gulp.src('src/js/**/*.js')
-    .pipe(sourcemaps.init())
     .pipe(terser())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('build/js'))
-    .pipe(browser.stream());
+    .pipe(replace('.js', '.min.js'))
+    .pipe(rename((path) => ({ ...path, extname: '.min.js' })))
+    .pipe(gulp.dest('build/js'));
 }
 
 // Images
@@ -183,7 +178,7 @@ function browsersync() {
 
 function watcher(cb) {
   gulp.watch('src/pug/**/*.pug', gulp.series(lintPug, compilePug, makeSprite));
-  gulp.watch('src/scss/**/*.scss', gulp.series(lintSass, compileScss));
+  gulp.watch('src/css/**/*.css', gulp.series(lintCSS, makeCSS));
   gulp.watch('src/img/icons/*.svg', makeSprite);
   gulp.watch([
     'src/img/**/*.{png,jpg,svg}',
@@ -212,8 +207,8 @@ export const server = gulp.series(browsersync);
 export const build = gulp.series(
   clean,
   gulp.parallel(
-    gulp.series(lintPug, compilePug, optimizeHTML),
-    gulp.series(lintSass, compileScss, postCSS),
+    gulp.series(lintPug, compilePug, makeSprite, optimizeHTML),
+    gulp.series(lintCSS, makeCSS),
     gulp.series(lintJS, optimizeJS),
     copyFonts,
     copyMisc,
@@ -221,23 +216,21 @@ export const build = gulp.series(
     optimizeImages,
     optimizeSVG,
   ),
-  gulp.series(makeSprite),
 );
 
 // Default
 export default gulp.series(
   clean,
   gulp.parallel(
-    gulp.series(lintPug, compilePug),
-    gulp.series(lintSass, compileScss),
-    gulp.series(lintJS, optimizeJS),
+    gulp.series(lintPug, compilePug, makeSprite),
+    gulp.series(lintCSS, makeCSS),
+    gulp.series(lintJS),
     copyFonts,
     copyMisc,
     copyVendor,
     copyImages,
   ),
   gulp.series(
-    makeSprite,
     watcher,
     browsersync,
   ),

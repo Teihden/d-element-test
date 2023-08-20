@@ -1,14 +1,7 @@
 {
   "name": "d-element-test",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Frontend test assignment",
-  "scripts": {
-    "stylelint": "stylelint \"src/scss/**/*.scss\" --fix --color",
-    "lint": "npm run stylelint",
-    "server": "gulp server",
-    "build": "gulp build",
-    "start": "gulp"
-  },
   "browserslist": [
     "> 0.5%",
     "last 2 versions",
@@ -37,8 +30,8 @@
   "devDependencies": {
     "@ifanrx/stylelint-config-standard-bem": "^1.1.0",
     "@ronilaukkarinen/gulp-stylelint": "^14.1.1",
-    "autoprefixer": "^10.4.15",
     "browser-sync": "^2.29.3",
+    "cssnano": "^6.0.1",
     "del": "^7.0.0",
     "eslint": "^8.47.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -52,21 +45,21 @@
     "gulp-pug": "^5.0.0",
     "gulp-pug-linter": "^1.5.0",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
+    "gulp-replace": "^1.1.4",
     "gulp-svgmin": "^4.1.0",
     "gulp-svgstore": "^9.0.0",
     "gulp-terser": "^2.1.0",
     "npm-check-updates": "^16.12.2",
     "postcss": "^8.4.28",
-    "postcss-csso": "^6.0.1",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^9.1.1",
     "pug-lint": "^2.7.0",
     "pug-lint-config-clock": "^2.0.0",
     "puglint-stylish": "^1.1.0",
     "sass": "^1.66.1",
     "stylelint": "^15.10.3",
     "stylelint-config-standard": "^34.0.0",
-    "stylelint-config-standard-scss": "^10.0.0",
     "stylelint-order": "^6.0.3"
   },
   "type": "module"

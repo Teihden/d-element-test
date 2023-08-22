@@ -31,6 +31,13 @@ function lintCSS() {
 }
 
 function makeCSS() {
+  if (process.env.NODE_ENV === 'development') {
+    return gulp.src('src/css/styles.css')
+      .pipe(postcss())
+      .pipe(gulp.dest('build/css'))
+      .pipe(browser.stream());
+  }
+
   return gulp.src('src/css/styles.css')
     .pipe(postcss())
     .pipe(rename((path) => ({ ...path, extname: '.min.css' })))
@@ -58,7 +65,8 @@ function compilePug() {
 
 function optimizeHTML() {
   return gulp.src('build/*.html')
-    .pipe(replace(/src="(.*?)js"/g, 'src="$1min.js"'))
+    .pipe(replace(/src="js\/(.*?)js"/g, 'src="js/$1min.js"'))
+    .pipe(replace(/href="css\/(.*?)css"/g, 'href="css/$1min.css"'))
     .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build'));
 }

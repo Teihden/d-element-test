@@ -1,5 +1,5 @@
 import { Validation } from './validation.js';
-import { sendData } from './http.js';
+import { sendData } from './http-api.js';
 
 class Form {
   static #SubmitButtonText = {

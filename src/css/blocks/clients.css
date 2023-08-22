@@ -124,8 +124,6 @@
 
   transition: background-color 0.3s ease-in-out;
 
-  will-change: background-color;
-
   &:hover {
     background-color: var(--nocturne);
   }

@@ -24,8 +24,6 @@
     opacity: 0;
 
     transition: opacity 0.3s ease-in-out;
-
-    will-change: opacity;
   }
 
   &:hover {
@@ -58,6 +56,7 @@
 
 .card__image {
   display: block;
+  max-width: 100%;
 
 
   &--business {
@@ -105,8 +104,6 @@
   margin: 3px 0 0;
 
   transition: transform 0.3s ease-in-out;
-
-  will-change: transform;
 }
 
 .card__link {
@@ -123,8 +120,6 @@
   column-gap: 24px;
 
   transition: color 0.3s ease-in-out;
-
-  will-change: color;
 
   &:hover {
     color: var(--dark-cyan-blue);

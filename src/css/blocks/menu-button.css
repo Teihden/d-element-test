@@ -10,8 +10,6 @@
 
   transition: background-color 0.3s ease-in-out;
 
-  will-change: background-color;
-
   &::before {
     content: "";
     position: absolute;
@@ -27,8 +25,6 @@
       top 0.3s ease-in-out 0.3s,
       transform 0.3s ease-in-out,
       background-color 0.3s ease-in-out;
-
-    will-change: top, transform, background-color;
   }
 
   &::after {
@@ -46,8 +42,6 @@
       bottom 0.3s ease-in-out 0.3s,
       transform 0.3s ease-in-out,
       background-color 0.3s ease-in-out;
-
-    will-change: top, transform, background-color;
   }
 }
 

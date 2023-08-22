@@ -3,7 +3,11 @@ module.exports = {
   plugins: {
     'postcss-import': {},
     'postcss-nested': {},
-    'postcss-preset-env': {},
+    'postcss-preset-env': {
+      features: {
+        'custom-properties': false,
+      },
+    },
     cssnano: process.env.NODE_ENV === 'production' ? { preset: 'default' } : false,
   },
 };

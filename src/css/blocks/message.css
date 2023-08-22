@@ -14,8 +14,6 @@
 
   transition: background-color 0.3s ease-in-out 0.3s;
 
-  will-change: background-color;
-
   &--success {
     box-shadow: var( --message-success-shadow);
   }
@@ -39,8 +37,6 @@
   opacity: 0;
 
   transition: opacity 0.3s ease-in-out 0.6s;
-
-  will-change: opacity;
 
   &--success {
     color: var(--white);
@@ -70,16 +66,11 @@
   pointer-events: none;
 
   transition: opacity 0.3s ease-in-out;
-
-  will-change: opacity;
-
   &--active {
     opacity: 1;
     pointer-events: auto;
 
     transition: opacity 0.3s ease-in-out;
-
-    will-change: opacity;
 
     .message__inner--success {
       background-color: var(--picton-blue);

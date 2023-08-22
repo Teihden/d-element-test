@@ -17,8 +17,6 @@
     background-color 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
 
-  will-change: background-color, box-shadow;
-
   &:hover {
     background-color: var(--dark-cyan-blue);
   }

@@ -142,8 +142,12 @@ function copyImages() {
 }
 
 function copyMisc() {
-  return gulp.src('src/*.{ico,webmanifest}')
-    .pipe(gulp.dest('build/'))
+  return gulp.src([
+    'src/*.ico',
+    'src/apple-touch-icon.png',
+    'src/*.webmanifest',
+  ])
+    .pipe(gulp.dest('build'))
     .pipe(browser.stream());
 }
 
@@ -182,16 +186,16 @@ function watcher(cb) {
   gulp.watch('src/img/icons/*.svg', makeSprite);
   gulp.watch([
     'src/img/**/*.{png,jpg,svg}',
-    'src/apple-touch-icon.png',
     '!src/img/icons/*.svg',
   ], copyImages);
   gulp.watch([
     'src/*.ico',
+    'src/apple-touch-icon.png',
     'src/*.webmanifest',
   ], copyMisc);
   gulp.watch(['src/vendor/**/*.min.{css,js,mjs}'], copyVendor);
   gulp.watch('src/fonts/**/*.{woff,woff2}', copyFonts);
-  gulp.watch('src/js/**/*.js', gulp.series(lintJS, optimizeJS));
+  gulp.watch('src/js/**/*.js', gulp.series(lintJS));
 
   cb();
 }

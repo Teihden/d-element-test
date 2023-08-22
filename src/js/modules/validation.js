@@ -22,12 +22,12 @@ class Validation {
     const inputs = formElement.querySelectorAll('[data-input]');
     const alerts = formElement.querySelectorAll('[data-alert]');
 
-    [...alerts].forEach((alert) => {
+    alerts.forEach((alert) => {
       const alertName = alert.dataset.alert;
       this.alert[alertName] = alert;
     });
 
-    [...inputs].forEach((input) => {
+    inputs.forEach((input) => {
       const inputName = input.dataset.input;
       this.input[inputName] = input;
 

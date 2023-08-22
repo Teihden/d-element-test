@@ -1,4 +1,6 @@
 {
+  "name": "d-element-test",
+  "short_name": "test",
   "icons": [
     { "src": "img/favicons/favicon-192x192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "img/favicons/favicon-512x512.png", "type": "image/png", "sizes": "512x512" }

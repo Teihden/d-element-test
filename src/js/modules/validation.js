@@ -2,15 +2,17 @@ const EMAIL_REGEX = /^[a-zA-Z0-9]+([.-]?[a-zA-Z0-9])*@[a-zA-Z0-9]+(-?[a-zA-Z0-9]
 
 class Validation {
   static #validator = {
-    required: (value) => value !== undefined && value !== null && value !== '',
-    email: (value) => !value || EMAIL_REGEX.test(value),
-    minlength: (value, condition) => !value || value.length >= condition,
+    required: (value, condition) => !condition || (value !== undefined && value !== null && value !== ''),
+    email: (value, condition) => !condition || (!value || EMAIL_REGEX.test(value)),
+    minLength: (value, condition) => !value || value.length >= condition,
+    maxLength: (value, condition) => !value || value.length <= condition,
   };
 
   static #message = {
     required: () => 'Empty field is not allowed',
     email: () => 'Entered value must be a valid email address',
-    minlength: (value, condition) => `Field value must be at least ${condition} characters. You've entered ${value.length}`,
+    minLength: (value, condition) => `Field value must be at least ${condition} characters. You've entered ${value.length}`,
+    maxLength: (value, condition) => `Field value must be a maximum of ${condition} characters. You've entered ${value.length}`,
   };
 
   constructor(formElement) {
@@ -31,51 +33,42 @@ class Validation {
       const inputName = input.dataset.input;
       this.input[inputName] = input;
 
-      const attrs = [...input.attributes];
-      const filteredAttrs = attrs.filter(({ name }) => name.startsWith('data-check'));
-
-      filteredAttrs.forEach((filteredAttr) => {
-        const checkName = filteredAttr.name.split('-').at(-1);
-        const checkCondition = filteredAttr.value;
-
-        this.check[inputName] = this.check[inputName] || [];
-        this.check[inputName].push([checkName, checkCondition]);
-      });
+      const checkList = JSON.parse(input.dataset.check);
+      this.check[inputName] = checkList;
     });
 
-    formElement.addEventListener('input', this.validate);
+    formElement.addEventListener('focusout', this.selectInput);
   }
 
-  validate = (arg) => {
-    let inputName;
+  selectInput = (evt) => {
+    const inputName = evt.target.dataset.input;
 
-    if (arg instanceof Event) {
-      inputName = arg.target.dataset.input;
-    } else {
-      inputName = arg;
+    if (inputName) {
+      this.validate(inputName);
     }
+  };
 
-    if (this.input[inputName]) {
-      const { value } = this.input[inputName];
-      const normalizedValue = value.trim();
-      const checks = this.check[inputName];
-      this.error[inputName] = null;
+  validate = (inputName) => {
+    const { value } = this.input[inputName];
+    const normalizedValue = value.trim();
+    const checkList = this.check[inputName];
 
-      checks.forEach((check) => {
-        if (!this.error[inputName]) {
-          const [checkName, checkCondition] = check;
-          const checkResult = Validation.#validator[checkName](normalizedValue, checkCondition);
+    this.error[inputName] = null;
 
-          if (!checkResult) {
-            this.error[inputName] = Validation.#message[checkName](normalizedValue, checkCondition);
-            this.renderError(inputName);
-          }
-        }
-      });
-
+    Object.keys(checkList).forEach((checkName) => {
       if (!this.error[inputName]) {
-        this.clearError(inputName);
+        const checkCondition = checkList[checkName];
+        const checkResult = Validation.#validator[checkName](normalizedValue, checkCondition);
+
+        if (!checkResult) {
+          this.error[inputName] = Validation.#message[checkName](normalizedValue, checkCondition);
+          this.renderError(inputName);
+        }
       }
+    });
+
+    if (!this.error[inputName]) {
+      this.clearError(inputName);
     }
   };
 

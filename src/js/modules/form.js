@@ -39,8 +39,10 @@ class Form {
   switchSubmitButtonState = (state, text) => {
     const { submitButton } = this.element;
 
-    submitButton.disabled = state;
-    submitButton.textContent = text;
+    if (submitButton) {
+      submitButton.disabled = state;
+      submitButton.textContent = text;
+    }
   };
 
   createFormData = () => {

@@ -32,13 +32,20 @@ class Modal {
     } = this.element;
 
     modal.addEventListener('click', this.closeModal);
-    modalInner.addEventListener('click', Modal.#onModalInnerClick);
 
-    openModalButton.addEventListener('click', this.openModal);
-    openModalButton.addEventListener('keydown', Modal.#onOpenModalButtonKeydown.bind(this));
+    if (modalInner) {
+      modalInner.addEventListener('click', Modal.#onModalInnerClick);
+    }
 
-    closeModalButton.addEventListener('click', this.closeModal);
-    closeModalButton.addEventListener('keydown', Modal.#onCloseModalButtonKeydown.bind(this));
+    if (openModalButton) {
+      openModalButton.addEventListener('click', this.openModal);
+      openModalButton.addEventListener('keydown', Modal.#onOpenModalButtonKeydown.bind(this));
+    }
+
+    if (closeModalButton) {
+      closeModalButton.addEventListener('click', this.closeModal);
+      closeModalButton.addEventListener('keydown', Modal.#onCloseModalButtonKeydown.bind(this));
+    }
   }
 
   #onDocumentKeydown = (evt) => handleEscapeKey(this.closeModal, evt);

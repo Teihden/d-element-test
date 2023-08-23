@@ -5,17 +5,35 @@ import { Message } from './message.js';
 import { initMenu } from './menu.js';
 
 const initApp = () => {
-  const formElement = document.querySelector('[data-form="work"]');
+  const menuButton = document.querySelector('[data-button="menu"]');
   const modalElement = document.querySelector('[data-modal="form-modal"]');
+  const formElement = document.querySelector('[data-form="work"]');
   const successMessageElement = document.querySelector('[data-message="success"]');
   const failureMessageElement = document.querySelector('[data-message="failure"]');
 
-  const formModal = new Modal(modalElement);
-  const successMessage = new Message(successMessageElement);
-  const failureMessage = new Message(failureMessageElement);
-  const form = new Form(formElement, formModal, successMessage, failureMessage);
+  const instance = {};
 
-  initMenu();
+  if (menuButton) {
+    initMenu(menuButton);
+  }
+
+  if (modalElement) {
+    instance.formModal = new Modal(modalElement);
+  }
+
+  if (successMessageElement) {
+    instance.successMessage = new Message(successMessageElement);
+  }
+
+  if (failureMessageElement) {
+    instance.failureMessage = new Message(failureMessageElement);
+  }
+
+  const { formModal, successMessage, failureMessage } = instance;
+
+  if (formElement) {
+    instance.form = new Form(formElement, formModal, successMessage, failureMessage);
+  }
 };
 
 export { initApp };

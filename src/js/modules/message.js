@@ -15,8 +15,11 @@ class Message {
 
     const { message, messageInner } = this.element;
 
-    messageInner.addEventListener('click', Message.#onMessageInnerClick);
     message.addEventListener('click', this.closeMessage);
+
+    if (messageInner) {
+      messageInner.addEventListener('click', Message.#onMessageInnerClick);
+    }
   }
 
   #onDocumentKeydown = (evt) => handleEscapeKey(this.closeMessage, evt);

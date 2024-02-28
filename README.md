@@ -8,7 +8,7 @@ This repository contains a landing page. Includes animated buttons and links, an
 
 ```shell
 # Install dependencies
-make install
+make ci
 ```
 
 ## CLI
